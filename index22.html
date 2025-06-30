@@ -1,0 +1,2189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pablo Mahave</title>
+<!-- Updated font link to include both Italiana and Manrope fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+<!-- Google Analytics Tag -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FYK8883900"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FYK8883900');
+</script>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Times New Roman', serif;
+    background-color: #0e0e0e;
+    color: #fff;
+    overflow-x: hidden;
+    width: 100vw;
+}
+
+/* Update the hero-container style to be fixed */
+.hero-container {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transition: opacity 1.2s ease-in-out; /* Add transition for fading out */
+}
+
+/* Transform the name container into a header-like element */
+.name-container {
+    position: fixed;
+    z-index: 100;
+    text-align: center;
+    padding: 2rem 4rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    will-change: transform; /* Optimize for animations */
+}
+
+/* Update the name styling to use Italiana font */
+.name {
+    font-family: 'Italiana', serif;
+    font-size: 140px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    white-space: nowrap;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7), 
+                 0 0 20px rgba(0, 0, 0, 0.5),
+                 0 0 30px rgba(0, 0, 0, 0.3);
+    line-height: 1.1;
+    will-change: transform, opacity; /* Optimize for animations */
+}
+
+/* Styles for the subtitle container */
+.subtitle-container {
+    position: fixed;
+    z-index: 99; /* Just below the name container */
+    text-align: center;
+    padding: 2rem 4rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 150%; /* Start below the viewport */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    will-change: transform, opacity; /* Optimize for animations */
+    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+}
+
+.emerging-tech {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 500;
+    font-size: 70px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7), 
+                 0 0 20px rgba(0, 0, 0, 0.5),
+                 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.senior-producer {
+    font-family: 'Italiana', serif;
+    font-size: 90px;
+    letter-spacing: 2px;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7), 
+                 0 0 20px rgba(0, 0, 0, 0.5),
+                 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.media-item {
+    position: absolute;
+    border-radius: 16px;
+    overflow: hidden;
+    opacity: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: filter 1s ease-in-out, transform 1.5s ease-in-out, opacity 1.5s ease-in-out;
+    background-color: #000;
+}
+
+.media-item img {
+    width: 100%;
+    height: 100%;
+    transform: scale(1.05);
+    transition: transform 0.5s ease-out;
+}
+
+/* Initial positions for media items */
+.item-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 50;
+}
+
+.item-1 {
+    top: 10%;
+    left: 15%;
+    transform: translate(-200%, -200%) scale(0);
+    z-index: 10;
+}
+
+.item-2 {
+    top: 10%;
+    right: 15%;
+    transform: translate(200%, -200%) scale(0);
+    z-index: 20;
+}
+
+.item-3 {
+    bottom: 15%;
+    left: 10%;
+    transform: translate(-200%, 200%) scale(0);
+    z-index: 30;
+}
+
+.item-4 {
+    bottom: 10%;
+    right: 10%;
+    transform: translate(200%, 200%) scale(0);
+    z-index: 40;
+}
+
+.item-5 {
+    top: 50%;
+    left: 5%;
+    transform: translate(-200%, 0) scale(0);
+    z-index: 4;
+}
+
+/* New position for CES image */
+.item-6 {
+    top: 50%;
+    right: 5%;
+    transform: translate(200%, 0) scale(0);
+    z-index: 5;
+}
+
+/* Animation classes */
+.hero-container.animated .item-center {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.hero-container.animated .item-1 {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+}
+
+.hero-container.animated .item-2 {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+}
+
+.hero-container.animated .item-3 {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+}
+
+.hero-container.animated .item-4 {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+}
+
+.hero-container.animated .item-5 {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+}
+
+.hero-container.animated .item-6 {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+}
+
+.hero-container.focused .media-item {
+    filter: blur(5px);
+}
+
+/* New class for fading out media items */
+.hero-container.fade-out .media-item {
+    opacity: 0 !important;
+    transition: opacity 1.2s ease-in-out;
+}
+
+/* Staggered animation delays */
+.hero-container.animated .item-center {
+    transition-delay: 0s;
+}
+.hero-container.animated .item-1 {
+    transition-delay: 0.2s;
+}
+.hero-container.animated .item-2 {
+    transition-delay: 0.4s;
+}
+.hero-container.animated .item-3 {
+    transition-delay: 0.6s;
+}
+.hero-container.animated .item-4 {
+    transition-delay: 0.8s;
+}
+.hero-container.animated .item-5 {
+    transition-delay: 1.0s;
+}
+.hero-container.animated .item-6 {
+    transition-delay: 1.2s;
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 200;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.scroll-indicator.hidden {
+    opacity: 0;
+}
+
+.scroll-indicator svg {
+    width: 30px;
+    height: 50px;
+    fill: none;
+    stroke: white;
+    stroke-width: 2;
+}
+
+.scroll-arrow {
+    animation: scrollArrow 2s infinite;
+}
+
+@keyframes scrollArrow {
+    0% {
+        transform: translateY(0);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translateY(10px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 0.8;
+    }
+}
+
+/* FIXED: Work Statement Section */
+.work-statement-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* Left align the content */
+    z-index: 98; /* Between subtitle and media items */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+    padding: 0 10%; /* Add horizontal padding */
+    background-color: transparent; /* Start with transparent background */
+    transition: background-color 1.5s ease-in-out, opacity 1s ease-in-out, visibility 1s ease-in-out;
+}
+
+.work-statement-section.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Add a class for when the section should have a solid background */
+.work-statement-section.solid-bg {
+    background-color: #0e0e0e; /* Changed from #000 to #0e0e0e to match the rest of the site */
+}
+
+.work-statement-line {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    text-align: left; /* Left align all text */
+    width: 100%; /* Full width */
+    margin-bottom: 20px; /* Add spacing between lines */
+}
+
+.work-statement-section.visible .work-statement-line {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* FIXED: Staggered line styles */
+.work-statement-line-1 {
+    font-family: 'Manrope', sans-serif;
+    font-size: 70px;
+    font-weight: 300;
+    transition-delay: 0.2s;
+}
+
+.work-statement-line-2 {
+    font-family: 'Manrope', sans-serif;
+    font-size: 70px;
+    font-weight: 300;
+    transition-delay: 0.4s;
+}
+
+/* FIXED: Line with rotating text */
+.work-statement-line-3 {
+    font-family: 'Manrope', sans-serif;
+    font-size: 70px;
+    font-weight: 300;
+    transition-delay: 0.6s;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* FIXED: Line for "experiences" */
+.work-statement-line-4 {
+    font-family: 'Manrope', sans-serif;
+    font-size: 70px;
+    font-weight: 300;
+    transition-delay: 0.8s;
+}
+
+/* FIXED: Dynamic text wrapper */
+.dynamic-text-wrapper {
+    display: inline-block;
+    position: relative;
+    min-width: 400px; /* Ensure enough width for all words */
+    height: 90px; /* Fixed height to prevent layout shifts */
+    margin-left: 20px; /* Space after "to create" */
+    vertical-align: baseline; /* Align with the text baseline */
+}
+
+/* UPDATED: Dynamic text styling with faster transition (533ms instead of 800ms) */
+.dynamic-text {
+    font-family: 'Italiana', serif;
+    font-size: 90px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.533s ease-out, transform 0.533s ease-out; /* Increased animation speed by factor of 1.5 */
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7), 
+                 0 0 20px rgba(0, 0, 0, 0.5),
+                 0 0 30px rgba(0, 0, 0, 0.3);
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+/* FIXED: First text placeholder */
+.dynamic-text:first-child {
+    position: relative; /* Take up space in the layout */
+    visibility: hidden; /* Hide the text but keep the space */
+}
+
+.dynamic-text.active {
+    opacity: 1;
+    transform: translateY(0);
+    position: absolute; /* Position over the placeholder */
+    visibility: visible; /* Ensure visibility */
+}
+
+.dynamic-text.fade-out {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+/* Content wrapper for standard scrolling sections */
+.content-wrapper {
+    position: relative;
+    z-index: 2;
+    padding-top: 300vh; /* Space for the first 3 viewport heights (fixed sections) */
+}
+
+/* MODIFIED: Skills and Passion Section - now standard flow instead of fixed */
+.skills-passion-section {
+    position: relative; /* Changed from fixed to relative for standard scrolling */
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    padding: 10vh 10% 10vh 10%;
+    background-color: #0e0e0e;
+}
+
+.skills-column, .passion-column {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+}
+
+.section-title {
+    font-family: 'Manrope', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: #dbdbdb;
+    margin-bottom: 30px;
+}
+
+.skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.skill-item {
+    font-family: 'Manrope', sans-serif;
+    font-size: 40px;
+    font-weight: 300;
+    color: #dbdbdb;
+}
+
+.passion-text {
+    font-family: 'Manrope', sans-serif;
+    font-size: 40px;
+    font-weight: 300;
+    color: #dbdbdb;
+    line-height: 1.3;
+}
+
+/* MODIFIED: Work Showcase Section - now standard flow instead of fixed */
+.work-showcase-section {
+    position: relative; /* Changed from fixed to relative for standard scrolling */
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10vh 0;
+    background-color: #0e0e0e;
+}
+
+.work-showcase-title {
+    font-family: 'Italiana', serif;
+    font-size: 80px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: #fff;
+    margin-bottom: 40px;
+}
+
+.work-showcase-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    max-width: 1400px;
+}
+
+.work-showcase-text {
+    font-family: 'Italiana', serif;
+    font-size: 180px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: #fff;
+}
+
+/* Updated work-showcase-image styles */
+.work-showcase-image {
+    width: 135%; /* Changed from 45% to 135% (3x larger) */
+    max-width: 1650px; /* Changed from 550px to 1650px (3x larger) */
+    border-radius: 8px; /* Apply 8px corner radius as requested */
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    transform: rotate(8deg); /* Add 8-degree rotation */
+    margin: 10px; /* Add some margin to prevent clipping with rotation */
+}
+
+.work-showcase-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover; /* Ensure the image covers the container while maintaining aspect ratio */
+}
+
+/* NEW: Project Detail Section */
+.project-detail-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 2.5vh 5%;
+    background-color: #0e0e0e;
+}
+
+.project-title {
+    font-family: 'Italiana', serif;
+    font-size: 52px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: #fff;
+    margin-bottom: 40px;
+}
+
+/* UPDATED: Project Content Container - Main wrapper for all project content */
+.project-content {
+    display: flex;
+    flex-direction: row; /* Default to row layout for larger screens */
+    justify-content: space-between;
+    gap: 3%;
+    width: 100%;
+}
+
+/* UPDATED: Project Info Container - Consolidated container for project elements */
+.project-info-container {
+    width: 40%; /* Fixed width for larger screens */
+    display: flex;
+    flex-direction: column;
+}
+
+.project-description {
+    width: 100%;
+}
+
+.project-text {
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #f9f9f9;
+    margin-bottom: 30px;
+}
+
+.project-credits {
+    margin-top: 40px;
+}
+
+.credit-line {
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #f9f9f9;
+    margin-bottom: 10px;
+}
+
+.credit-name {
+    font-weight: 600;
+}
+
+.festival-logos {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.festival-logo {
+    height: 60px;
+    filter: brightness(0.9);
+    border-radius: 8px;
+}
+
+/* UPDATED: Project Media Container */
+.project-media {
+    width: 57%; /* Fixed width for larger screens */
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.carousel-container {
+    flex: 1;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* UPDATED: Video Container Styles */
+.video-container {
+    flex: 1;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background-color: #000;
+}
+
+/* ENHANCED: Custom video controls styling */
+.video-container video::-webkit-media-controls-panel {
+    background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.7)) !important;
+}
+
+/* Hide the settings/overflow menu button (hamburger menu) */
+.video-container video::-webkit-media-controls-overflow-button,
+.video-container video::-webkit-media-controls-more-button,
+.video-container video::-webkit-media-controls-toggle-closed-captions-button {
+    display: none !important;
+}
+
+/* Hide playback speed controls and any unwanted menus */
+.video-container video::-webkit-media-controls-enclosure div[pseudo="-webkit-media-controls-additional-controls-container"],
+.video-container video::-webkit-media-controls-playback-button-container {
+    display: none !important;
+}
+
+/* Ensure primary controls remain visible */
+.video-container video::-webkit-media-controls-play-button,
+.video-container video::-webkit-media-controls-timeline,
+.video-container video::-webkit-media-controls-current-time-display,
+.video-container video::-webkit-media-controls-time-remaining-display,
+.video-container video::-webkit-media-controls-mute-button,
+.video-container video::-webkit-media-controls-volume-slider,
+.video-container video::-webkit-media-controls-fullscreen-button {
+    display: block !important;
+}
+
+/* Firefox-specific styles */
+@-moz-document url-prefix() {
+    .video-container video {
+        --media-controls-overflow-button-display: none !important;
+        --media-controls-playback-rate-button-display: none !important;
+    }
+}
+
+/* Additional specificity for Safari */
+@media screen and (min-color-index:0) and(-webkit-min-device-pixel-ratio:0) {
+    .video-container video::-webkit-media-controls-panel {
+        display: flex !important;
+        flex-wrap: wrap !important;
+    }
+}
+
+/* MODIFIED: Carousel controls positioned overlaid on sides of the image */
+.carousel-controls {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.carousel-control {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+}
+
+.carousel-control.prev-slide {
+    left: 10px;
+}
+
+.carousel-control.next-slide {
+    right: 10px;
+}
+
+.carousel-control:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-control svg {
+    width: 80px;
+    height: 80px;
+    fill: none;
+    stroke: white;
+    stroke-width: 4;
+}
+
+/* NEW: Technology badge styles */
+.tech-badge {
+    display: inline-block;
+    border: 1px solid white;
+    border-radius: 20px;
+    padding: 4px 12px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+    white-space: nowrap;
+}
+
+/* NEW: Contact section styles */
+.contact-section {
+    position: relative;
+    width: 100%;
+    padding: 5vh 10%;
+    background-color: #0e0e0e;
+    text-align: center;
+    margin-top: 50px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact-title {
+    font-family: 'Italiana', serif;
+    font-size: 42px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.contact-link {
+    font-family: 'Manrope', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid white;
+    border-radius: 30px;
+}
+
+.contact-link:hover {
+    color: #ccc;
+    border-color: #ccc;
+}
+
+/* UPDATED: Responsive adjustments for project detail sections */
+@media (max-width: 1279px) {
+    .project-content {
+        flex-direction: column; /* Stack vertically on smaller screens */
+    }
+    
+    .project-info-container, .project-media {
+        width: 100%; /* Full width on smaller screens */
+    }
+    
+    /* Standard section - media below info */
+    .project-detail-section:nth-child(odd) .project-media {
+        order: 1; /* Move media to the top */
+        margin-bottom: 40px; /* Add space below media */
+        margin-top: 0; /* Remove top margin */
+    }
+    
+    .project-detail-section:nth-child(odd) .project-info-container {
+        order: 2; /* Move info below media */
+    }
+    
+    /* Reversed section - media below info */
+    .project-detail-section:nth-child(even) .project-media {
+        order: 1; /* Move media to the top */
+        margin-bottom: 40px; /* Add space below media */
+        margin-top: 0; /* Remove top margin */
+    }
+    
+    .project-detail-section:nth-child(even) .project-info-container {
+        order: 2; /* Move info below media */
+    }
+}
+
+@media (max-width: 1200px) {
+    .name {
+        font-size: 100px;
+    }
+    .emerging-tech {
+        font-size: 50px;
+    }
+    .senior-producer {
+        font-size: 70px;
+    }
+    .work-statement-line-1,
+    .work-statement-line-2,
+    .work-statement-line-3,
+    .work-statement-line-4 {
+        font-size: 50px;
+    }
+    .dynamic-text {
+        font-size: 70px;
+    }
+    .dynamic-text-wrapper {
+        min-width: 300px;
+        height: 70px;
+    }
+    .skill-item, .passion-text {
+        font-size: 32px;
+    }
+    .work-showcase-title {
+        font-size: 60px;
+    }
+    .work-showcase-text {
+        font-size: 120px;
+    }
+    .project-title {
+        font-size: 48px;
+    }
+}
+
+@media (max-width: 768px) {
+    .name {
+        font-size: 60px;
+    }
+    .emerging-tech {
+        font-size: 30px;
+    }
+    .senior-producer {
+        font-size: 40px;
+    }
+    .work-statement-line-1,
+    .work-statement-line-2,
+    .work-statement-line-3,
+    .work-statement-line-4 {
+        font-size: 30px;
+    }
+    .dynamic-text {
+        font-size: 40px;
+    }
+    .dynamic-text-wrapper {
+        min-width: 200px;
+        height: 40px;
+    }
+    .skills-passion-section {
+        flex-direction: column;
+        padding: 10vh 5%;
+    }
+    .skills-column, .passion-column {
+        width: 100%;
+    }
+    .passion-column {
+        margin-top: 30px;
+    }
+    .skill-item, .passion-text {
+        font-size: 24px;
+    }
+    .work-showcase-title {
+        font-size: 40px;
+        text-align: center;
+    }
+    .work-showcase-content {
+        flex-direction: column;
+        width: 90%;
+    }
+    .work-showcase-text {
+        font-size: 80px;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    .work-showcase-image {
+        width: 90%;
+        max-width: 400px;
+    }
+    .project-title {
+        font-size: 44px;
+    }
+    .festival-logos {
+        flex-wrap: wrap;
+    }
+    .festival-logo {
+        height: 40px;
+    }
+    .carousel-control {
+        width: 40px;
+        height: 40px;
+    }
+    .project-detail-section {
+        padding: 2vh 5%;
+    }
+    .tech-badge {
+        font-size: 10px;
+        padding: 3px 8px;
+    }
+    .contact-section {
+        padding: 3vh 5%;
+    }
+    .contact-title {
+        font-size: 36px;
+    }
+    .contact-link {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .name {
+        font-size: 40px;
+    }
+    .emerging-tech {
+        font-size: 20px;
+    }
+    .senior-producer {
+        font-size: 30px;
+    }
+    .work-statement-line-1,
+    .work-statement-line-2,
+    .work-statement-line-3,
+    .work-statement-line-4 {
+        font-size: 20px;
+    }
+    .dynamic-text {
+        font-size: 30px;
+    }
+    .dynamic-text-wrapper {
+        min-width: 150px;
+        height: 30px;
+        margin-left: 10px;
+    }
+    .skill-item, .passion-text {
+        font-size: 18px;
+    }
+    .work-showcase-title {
+        font-size: 30px;
+    }
+    .work-showcase-text {
+        font-size: 50px;
+    }
+    .work-showcase-image {
+        width: 95%;
+        max-width: 320px;
+    }
+    .project-title {
+        font-size: 36px;
+    }
+    .project-text {
+        font-size: 16px;
+    }
+    .credit-line {
+        font-size: 14px;
+    }
+    .festival-logo {
+        height: 30px;
+    }
+    .carousel-control {
+        width: 35px;
+        height: 35px;
+    }
+    .project-detail-section {
+        padding: 1.5vh 5%;
+    }
+    .tech-badge {
+        font-size: 9px;
+        padding: 2px 6px;
+        margin-right: 4px;
+        margin-bottom: 4px;
+    }
+    .contact-section {
+        padding: 2vh 5%;
+    }
+    .contact-title {
+        font-size: 30px;
+    }
+    .contact-link {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+</style>
+
+</head>
+<body>
+<div class="hero-container">
+<!-- Center image behind the name -->
+<div class="media-item item-center">
+    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/beefeater-VOGLBuDk7nmexK70NBbO6YhQU6jlYq.jpeg" alt="Woman with Beefeater gin" data-max-width="30">
+</div>
+
+<!-- Media items positioned absolutely -->
+<div class="media-item item-1">
+    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/snatch-2zlbrOfiChrKwV4uwLTedgq4Jst6Q5.jpeg" alt="Snatch TV series cast" data-max-width="22">
+</div>
+<div class="media-item item-2">
+    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/borderlands-RlDVnTB7yNQrz2x5vgqs5Fu32CcolD.jpeg" alt="Border Lands documentary" data-max-width="25">
+</div>
+<div class="media-item item-3">
+    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/lifejackets-hKXYSpxHbTmFKPEkitLIq27D2Infc3.jpeg" alt="Life jackets film festival" data-max-width="20">
+</div>
+<div class="media-item item-4">
+    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/aigen-AAsEUjz9c86397W2oUQQ8i6WPCqf7g.jpeg" alt="Clay figures swimming with Statue of Liberty" data-max-width="18">
+</div>
+<div class="media-item item-5">
+    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/womanheadset-4MHa35hgbeMg6L3p6NzLYKSTbbdQNL.png" alt="Woman with VR headset" data-max-width="22">
+</div>
+<div class="media-item item-6">
+    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ces-HJtdNRh3NlB9w4VC0dk8OBl9wzebR6.png" alt="CES 3D character" data-max-width="20">
+</div>
+
+<!-- Name container -->
+<div class="name-container">
+    <h1 class="name">Pablo Mahave</h1>
+</div>
+
+<!-- Subtitle container (separate from name for independent animation) -->
+<div class="subtitle-container">
+    <div class="emerging-tech">Emerging Technologies</div>
+    <div class="senior-producer">SENIOR PRODUCER</div>
+</div>
+
+<!-- Scroll indicator -->
+<div class="scroll-indicator">
+    <svg viewBox="0 0 30 50">
+        <rect x="5" y="5" width="20" height="40" rx="10" ry="10" stroke-linecap="round"/>
+        <line class="scroll-arrow" x1="15" y1="15" x2="15" y2="25" stroke-linecap="round"/>
+    </svg>
+</div>
+</div>
+
+<!-- FIXED: Work Statement Section with proper structure -->
+<div class="work-statement-section">
+<div class="work-statement-line work-statement-line-1">I work with</div>
+<div class="work-statement-line work-statement-line-2">emerging technologies</div>
+<div class="work-statement-line work-statement-line-3">
+    to create
+    <span class="dynamic-text-wrapper">
+        <span class="dynamic-text">IMMERSIVE</span>
+        <span class="dynamic-text">UNIQUE</span>
+        <span class="dynamic-text">INTERACTIVE</span>
+        <span class="dynamic-text">DISRUPTIVE</span>
+    </span>
+</div>
+<div class="work-statement-line work-statement-line-4">experiences</div>
+</div>
+
+<!-- Content wrapper for standard scrolling sections -->
+<div class="content-wrapper">
+<!-- MODIFIED: Skills and Passion Section - now standard flow -->
+<div class="skills-passion-section">
+    <div class="skills-column">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-list">
+            <div class="skill-item">Generative AI</div>
+            <div class="skill-item">Virtual Reality</div>
+            <div class="skill-item">Augmented Reality</div>
+            <div class="skill-item">Production Management</div>
+            <div class="skill-item">Immersive Installations</div>
+            <div class="skill-item">Non-Fiction Storytelling</div>
+            <div class="skill-item">Cinematography</div>
+            <div class="skill-item">Photojournalism</div>
+        </div>
+    </div>
+    <div class="passion-column">
+        <h2 class="section-title">Vision</h2>
+        <div class="passion-text">
+            I create bold new storytelling formats by fusing bleeding-edge technology with creative vision to craft memorable experiences that provoke audiences to feel, play, and connect.
+        </div>
+    </div>
+</div>
+
+<!-- MODIFIED: Work Showcase Section - now standard flow -->
+<div class="work-showcase-section">
+    <h2 class="work-showcase-title">Check out my work in...</h2>
+    <div class="work-showcase-content">
+        <div class="work-showcase-text">AGENCY</div>
+        <div class="work-showcase-image">
+            <img src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/snatch/picks/snatch_poster.jpg" alt="Snatch TV series poster - you in or you out?">
+        </div>
+    </div>
+</div>
+
+<!-- NEW: Third Project Detail Section with Video Container -->
+<div class="project-detail-section">
+    <!-- Project Content Container with horizontal layout for 1280px+ -->
+    <div class="project-content">
+        <!-- Left side: Project info container -->
+        <div class="project-info-container">
+            <div class="project-description">
+                <!-- Moved project title inside project-description -->
+                <h2 class="project-title">Snatch VR Heist</h2>
+                <div class="project-text">
+                    <span class="tech-badge">Interactive Virtual Reality</span>
+                    <span class="tech-badge">CGI</span>
+                    <span class="tech-badge">360° Live Action</span>
+                    <span class="tech-badge">VFX</span>
+                </div>
+                <div class="project-text">
+                    Pull off a high-stakes diamond heist with Rupert Grint (Harry Potter), Luke Pasqualino (Skins), and Lucien Laviscount (Emily in Paris) in this pulse-pounding VR experience set in the gritty world of Snatch. In just six minutes, you're not watching the action—you are the action. Step inside Sony Crackle's hit series and become part of the crew, navigating London's criminal underworld in a boundary-breaking blend of film and interactive storytelling.
+                </div>
+                <div class="project-text">
+                    Premiered at Venice Immersive and featured at Tribeca and Raindance, Snatch VR was shot filming stars individually and choreographing their performances to interact seamlessly in VR. Built using a combination of high end 360 degree live action video, CGI and VFX, this project set a new bar for immersive, transmedia storytelling.
+                </div>
+                <div class="project-credits">
+                    <div class="credit-line">Immersive Video Lead: <span class="credit-name">Pablo Mahave</span></div>
+                    <div class="credit-line">Production Company: <span class="credit-name">Future Lighthouse</span></div>
+                </div>
+                <div class="festival-logos">
+                    <img src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/snatch/picks/snatch_venice_logo.png" alt="Venice Film Festival Logo" class="festival-logo">
+                    <img src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/snatch/picks/snatch_raindance_logo.png" alt="Raindance Film Festival Logo" class="festival-logo">
+                    <img src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/snatch/picks/tribeca_logo.png" alt="Biennial of Moving Image Logo" class="festival-logo">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right side: Project media container with video instead of carousel -->
+        <div class="project-media">
+            <div class="video-container">
+                <video controls controlsList="nodownload" disablePictureInPicture poster="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/snatch/picks/snatch_thumbnail.jpg">
+                    <source src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/snatch/picks/snatch_video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- NEW: Fourth Project Detail Section with Video Container and Reversed Layout -->
+<div class="project-detail-section">
+    <!-- UPDATED: Project Content Container with reversed layout -->
+    <div class="project-content">
+        <!-- Left side: Project media container with video (moved from right) -->
+        <div class="project-media">
+            <div class="video-container">
+                <video controls controlsList="nodownload" disablePictureInPicture poster="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/hyundai/picks/hyundai_thumbnail_logo.png">
+                    <source src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/hyundai/picks/hyundai_video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+        
+        <!-- Right side: Project info container (moved from left) -->
+        <div class="project-info-container">
+            <div class="project-description">
+                <!-- Moved project title inside project-description -->
+                <h2 class="project-title">Hyundai Metaverse @ CES Las Vegas</h2>
+                <div class="project-text">
+                    <span class="tech-badge">Real-time</span>
+                    <span class="tech-badge">Mo-Cap</span>
+                    <span class="tech-badge">Face Tracking</span>
+                    <span class="tech-badge">Live Avatar Customization</span>
+                </div>
+                <div class="project-text">
+                    At CES, a towering five-meter-high LED volume became the gateway to a living, breathing Hyundai Metaverse. Visitors stepped into a fully immersive, interactive world where they were instantly scanned and transformed into custom avatars—each one unique, dynamic, and  generated in real time.
+                </div>
+                <div class="project-text">
+                    Inside, the digital doubles weren't just static visuals—they moved, reacted, and came alive through the power of live motion capture and facial expression tracking, performed behind the scenes by skilled artists. The result was a surreal, high-tech mirror where guests could meet and interact with their virtual selves in a space that felt like stepping into the future of human connection.
+                </div>
+                <div class="project-credits">
+                    <div class="credit-line">Senior Producer: <span class="credit-name">Pablo Mahave</span></div>
+                    <div class="credit-line">Production Company: <span class="credit-name">The Mill</span></div>
+                </div>
+                <!-- <div class="festival-logos">
+                    <img src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/hyundai/picks/mill_logo.png" alt="The Mill Logo" class="festival-logo">
+                    <img src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/hyundai/picks/ces_logo.svg" alt="CES Logo" class="festival-logo">
+                    <img src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/hyundai/picks/hyundai_logo.gif" alt="CES Logo" class="festival-logo">
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- NEW: Third Project Detail Section with Video Container -->
+<div class="project-detail-section">
+    <!-- Project Content Container with horizontal layout for 1280px+ -->
+    <div class="project-content">
+        <!-- Left side: Project info container -->
+        <div class="project-info-container">
+            <div class="project-description">
+                <!-- Moved project title inside project-description -->
+                <h2 class="project-title">Symphony</h2>
+                <div class="project-text">
+                    <span class="tech-badge">3D Sound Design</span>
+                    <span class="tech-badge">CGI</span>
+                    <span class="tech-badge">360° Live Action</span>
+                    <span class="tech-badge">VFX</span>
+                </div>
+                <div class="project-text">
+                    Symphony VR is a Cannes-nominated immersive audiovisual experience that transports audiences deep into the heart of classical music, guided by the celebrated maestro Gustavo Dudamel (Los Angeles Philharmonic). This cinematic virtual reality journey offers a uniquely intimate perspective, allowing spectators to not only witness but feel music from within—whether entering the interior of an instrument or standing among the musicians of the prestigious Mahler Chamber Orchestra.
+                </div>
+                <div class="project-text">
+                    Blending 360° live-action footage with stunning CGI and VFX, and utilizing cutting-edge technology, Symphony VR creates a vivid, multi-sensory environment. Featuring powerful compositions by Beethoven, Mahler, and Bernstein, the experience takes viewers on an emotional voyage, helping them understand and connect with classical music like never before
+                </div>
+                <div class="project-credits">
+                    <div class="credit-line">Producer: <span class="credit-name">Pablo Mahave</span></div>
+                    <div class="credit-line">Production Company: <span class="credit-name">Visualise London</span></div>
+                </div>
+                <div class="festival-logos">
+                    <img src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/symphony/picks/cannes_logo.svg.png" alt="Cannes Marche du Film Logo" class="festival-logo">
+                    <img src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/symphony/picks/mahler_logo.png" alt="Mahler Chamber Orchestra Logo" class="festival-logo">
+                    <img src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/symphony/picks/caixa_logo.webp" alt="La Caixa Logo" class="festival-logo">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right side: Project media container with video instead of carousel -->
+        <div class="project-media">
+            <div class="video-container">
+                <video controls controlsList="nodownload" disablePictureInPicture poster="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/symphony/picks/symphony_thumbnail.png">
+                    <source src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/symphony/picks/symphony_video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- NEW: Fourth Project Detail Section with Video Container and Reversed Layout -->
+<div class="project-detail-section">
+    <!-- UPDATED: Project Content Container with reversed layout -->
+    <div class="project-content">
+        <!-- Left side: Project media container with video (moved from right) -->
+        <div class="project-media">
+            <div class="video-container">
+                <video controls controlsList="nodownload" disablePictureInPicture poster="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/amex/picks/amex_thumbnail.png">
+                    <source src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/amex/picks/amex_video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+        
+        <!-- Right side: Project info container (moved from left) -->
+        <div class="project-info-container">
+            <div class="project-description">
+                <!-- Moved project title inside project-description -->
+                <h2 class="project-title">American Express</h2>
+                <div class="project-text">
+                    American Express Cardscapes is a visually striking and emotionally resonant social media initiative that reimagines the Platinum Card as a gateway to transformative experiences. Through a series of dynamic visuals and animations, the campaign illustrates how the card empowers members to explore new horizons and embrace unique adventures.
+                </div>
+                <div class="project-text">
+                    The creative approach involved translating strategic concepts into compelling visual narratives, emphasizing the exclusive benefits and elevated lifestyle associated with the Platinum Card. The campaign's design elements and storytelling techniques aim to connect with audiences on a personal level, highlighting the card's role in facilitating memorable moments and enriching journeys.
+                </div>
+                <div class="project-credits">
+                    <div class="credit-line">Senior Integrated Digital Producer: <span class="credit-name">Pablo Mahave</span></div>
+                    <div class="credit-line">Production Company: <span class="credit-name">Barbarian</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- NEW: Third Project Detail Section with Video Container -->
+<div class="project-detail-section">
+    <!-- Project Content Container with horizontal layout for 1280px+ -->
+    <div class="project-content">
+        <!-- Left side: Project info container -->
+        <div class="project-info-container">
+            <div class="project-description">
+                <!-- Moved project title inside project-description -->
+                <h2 class="project-title">BeefeaterXO</h2>
+                <div class="project-text">
+                    <span class="tech-badge">Virtual Reality</span>
+                    <span class="tech-badge">CGI</span>
+                    <span class="tech-badge">360° Live Action</span>
+                    <span class="tech-badge">Immersive Audio</span>
+                </div>
+                <div class="project-text">
+                    BeefeaterXO blasts open the boundaries of virtual reality, throwing you headfirst into a surreal, high-octane world where food, fantasy, and myth collide. This six-minute sensory rollercoaster partners with culinary iconoclast Dabiz Muñoz to explore a dreamscape shaped by the chef's most explosive gastronomic influences. From the neon-drenched chaos of Bangkok to the steamy vibrance of Mumbai, each city is reimagined as a psychedelic playground, inhabited by mythical beings and narrative surprises. These richly stylized environments aren't just backdrops—they're alive, pulsing with energy, and designed to provoke awe at every turn.
+                </div>
+                <div class="project-text">
+                    Muñoz's radical imagination takes full flight through cutting-edge 360º stereoscopic video captured in pristine 4K, layered with cutting edge sound design that pulls you deeper into the madness. The result is more than a VR experience—it's a cinematic fever dream where high cuisine meets high fantasy.
+                </div>
+                <div class="project-credits">
+                    <div class="credit-line">Immersive Video Lead: <span class="credit-name">Pablo Mahave</span></div>
+                    <div class="credit-line">Production Company: <span class="credit-name">Future Lighthouse</span></div>
+                </div>
+                <div class="festival-logos">
+                    <img src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/beefeater/picks/tribecax_logo.png" alt="Tribeca X Award Logo" class="festival-logo">
+                    <img src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/beefeater/picks/sitgesnext_logo.png" alt="Sitges Next Logo" class="festival-logo">
+                    <img src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/beefeater/picks/seattlefilmfestival_logo.png" alt="SIFF Logo" class="festival-logo">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right side: Project media container with video instead of carousel -->
+        <div class="project-media">
+            <div class="video-container">
+                <video controls controlsList="nodownload" disablePictureInPicture poster="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/beefeater/picks/beefeater_thumbnail.jpg">
+                    <source src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/beefeater/picks/beefeater_video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- NEW: Fourth Project Detail Section with Video Container and Reversed Layout -->
+<div class="project-detail-section">
+    <!-- UPDATED: Project Content Container with reversed layout -->
+    <div class="project-content">
+        <!-- Left side: Project media container with video (moved from right) -->
+        <div class="project-media">
+            <div class="video-container">
+                <video controls controlsList="nodownload" disablePictureInPicture poster="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/aicp/picks/aicp_thumbnail.png">
+                    <source src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/aicp/picks/aicp_video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+        
+        <!-- Right side: Project info container (moved from left) -->
+        <div class="project-info-container">
+            <div class="project-description">
+                <!-- Moved project title inside project-description -->
+                <h2 class="project-title">AICP Mo-Cap</h2>
+                <div class="project-text">
+                    <span class="tech-badge">Real-time</span>
+                    <span class="tech-badge">Motion Capture</span>
+                    <span class="tech-badge">Face Tracking</span>
+                </div>
+                <div class="project-text">
+                    Step into the glow of neon nostalgia—this summer's standout celebration transformed a New York studio into a retro-futuristic wonderland. At the heart of the party? A secret 80s-themed barcade and speakeasy, hosted not by a person, but by a living, breathing digital being: Violet.
+                </div>
+                <div class="project-text">
+                    Violet isn't just a character—she's a real-time virtual persona, brought to life by a live performer wearing a full motion-capture suit with facial expression tracking. Every blink, smirk, and dance move was streamed live, allowing Violet to interact with guests in real time. Just pure, spontaneous, face-to-face connection through a screen.
+                </div>
+                <div class="project-text">
+                    This was more than tech. It was theater. A next-gen social experience where cutting-edge performance met playful nostalgia, and where every conversation sparked with one-of-a-kind energy. In a world craving authentic interaction, Violet turned the ordinary into something unforgettable.
+                </div>
+                <div class="project-credits">
+                    <div class="credit-line">Senior Producer: <span class="credit-name">Pablo Mahave</span></div>
+                    <div class="credit-line">Production Company: <span class="credit-name">The Mill</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- NEW: Third Project Detail Section with Video Container -->
+<div class="project-detail-section">
+    <!-- Project Content Container with horizontal layout for 1280px+ -->
+    <div class="project-content">
+        <!-- Left side: Project info container -->
+        <div class="project-info-container">
+            <div class="project-description">
+                <!-- Moved project title inside project-description -->
+                <h2 class="project-title">Dell Experience Centre</h2>
+                <div class="project-text">
+                    <span class="tech-badge">Interactive VR</span>
+                    <span class="tech-badge">360° Live Action</span>
+                    <span class="tech-badge">Headset & Web Browser</span>
+                </div>
+                <div class="project-text">
+                    This experience transports business leaders straight into Dell's state-of-the-art London Experience Centre—virtually. With high-fidelity 3D environments and branching, user-specific narratives, it mirrors the real-world location where Dell showcases its cutting-edge innovations in workforce transformation.
+                </div>
+                <div class="project-text">
+                    Available both in VR and on the web, this immersive platform breaks physical barriers, letting decision makers explore Dell's world-class solutions anytime, anywhere. It's not just a tour—it's a front-row seat to the future of enterprise tech.
+                </div>
+                <div class="project-credits">
+                    <div class="credit-line">Producer: <span class="credit-name">Pablo Mahave</span></div>
+                    <div class="credit-line">Production Company: <span class="credit-name">Visualise London</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right side: Project media container with video instead of carousel -->
+        <!-- Right side: Project media container -->
+        <div class="project-media">
+            <div class="carousel-container">
+                <div class="carousel-slide active">
+                    <img src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/dell/picks/dell_thumbnail_logo.png"alt="">
+                </div>
+                <div class="carousel-slide">
+                    <img src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/dell/picks/dell_1.png" alt="">
+                </div>
+                <div class="carousel-slide">
+                    <img src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/dell/picks/dell_2.png" alt="">
+                </div>
+                <div class="carousel-slide">
+                    <img src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/dell/picks/dell_3.png" alt="">
+                </div>
+                <div class="carousel-slide">
+                    <img src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/dell/picks/dell_4.png" alt="">
+                </div>
+            </div>
+            <div class="carousel-control prev-slide">
+                <svg viewBox="0 0 24 24">
+                    <polyline points="15 18 9 12 15 6" />
+                </svg>
+            </div>
+            <div class="carousel-control next-slide">
+                <svg viewBox="0 0 24 24">
+                    <polyline points="9 18 15 12 9 6" />
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- NEW: Fourth Project Detail Section with Video Container and Reversed Layout -->
+<div class="project-detail-section">
+    <!-- UPDATED: Project Content Container with reversed layout -->
+    <div class="project-content">
+        <!-- Left side: Project media container with video (moved from right) -->
+        <div class="project-media">
+            <div class="video-container">
+                <video controls controlsList="nodownload" disablePictureInPicture poster="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/toyota/picks/toyota_thumbnail_logo.png">
+                    <source src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/toyota/picks/toyota_video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+        
+        <!-- Right side: Project info container (moved from left) -->
+        <div class="project-info-container">
+            <div class="project-description">
+                <!-- Moved project title inside project-description -->
+                <h2 class="project-title">Toyota GR Supra</h2>
+                <div class="project-text">
+                    <span class="tech-badge">Binaural Audio</span>
+                    <span class="tech-badge">360° Live Action</span>
+                    <span class="tech-badge">Sound Experience</span>
+                </div>
+                <div class="project-text">
+                    With more than 1M views, it became Toyota's most-watched video in two years. This launch experience redefined how a car can be felt online. The teaser video harnessed the full power of binaural audio—captured with a Neumann head, Sennheiser Ambeo, and car-mounted mics—placing viewers trackside as the Supra screamed past. 
+                </div>
+                <div class="project-text">
+                    The follow-up: a fully interactive 360º film, seamlessly stitched and visually striking, letting audiences explore the Supra from every angle. Paired with cinematic visuals and immersive sound, it delivered the thrill of the GR Supra—without leaving the screen.
+                </div>
+                <div class="project-credits">
+                    <div class="credit-line">Producer: <span class="credit-name">Pablo Mahave</span></div>
+                    <div class="credit-line">Production Company: <span class="credit-name">Visualise London</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODIFIED: Work Showcase Section - now standard flow -->
+<div class="work-showcase-section">
+    <div class="work-showcase-content">
+        <div class="work-showcase-text">NON-FICTION</div>
+        <div class="work-showcase-image">
+            <img src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/onsight/on_sight_crop.jpg" alt="On Sight Poster">
+        </div>
+    </div>
+</div>
+
+<!-- NEW: Fourth Project Detail Section with Video Container and Reversed Layout -->
+<div class="project-detail-section">
+    <!-- UPDATED: Project Content Container with reversed layout -->
+    <div class="project-content">
+        <!-- Left side: Project media container with video (moved from right) -->
+        <div class="project-media">
+            <div class="video-container">
+                <video controls controlsList="nodownload" disablePictureInPicture poster="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/zikr/picks/zikr_thumbnail.png">
+                    <source src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/zikr/picks/zikr_video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+        
+        <!-- Right side: Project info container (moved from left) -->
+        <div class="project-info-container">
+            <div class="project-description">
+                <!-- Moved project title inside project-description -->
+                <h2 class="project-title">Zikr: A Sufi Revival</h2>
+                <div class="project-text">
+                    <span class="tech-badge">Multi-User Social VR</span>
+                    <span class="tech-badge">6DOF Roomscale</span>
+                    <span class="tech-badge">Volumetric Capture</span>
+                </div>
+                <div class="project-text">
+                    Zikr: A Sufi Revival isn't just a VR experience—it's a soul-shaking, body-moving, joy-fueled dive into the heart of mystical Islam. Premiering at Sundance and acquired by Dogwoof, this groundbreaking social VR piece drops you into an ecstatic ritual alongside real Tunisian Sufis.
+                </div>
+                <div class="project-text">
+                    Step inside a living ceremony where four participants dance, chant, and connect in real time—linked by a glowing rope of prayer beads that responds to your every move. Guided by hypnotic rhythms and sacred chants, your movements unlock waves of light, sound, and sacred geometry in a shared virtual space.
+                </div>
+                <div class="project-text">
+                    Powered by full-body motion capture, spatial audio, and real-time networked avatars, Zikr transforms ritual into revelation. Forget passive viewing—this is faith you feel: through music, through movement, through presence. Sufism like you've never seen it—ecstatic, inclusive, and alive.
+                </div>
+                <div class="project-credits">
+                    <div class="credit-line">Associate Producer: <span class="credit-name">Pablo Mahave</span></div>
+                    <div class="credit-line">Production Company: <span class="credit-name">Sensorium / Superbright</span></div>
+                </div>
+                <div class="festival-logos">
+                    <img src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/zikr/picks/sundance_long_logo.png" alt="Sundance Logo" class="festival-logo">
+                    <img src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/zikr/picks/dogwoof_logo.png" alt="Dogwoof Logo" class="festival-logo">
+                    <img src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/zikr/picks/idfa_doclab_logo.webp" alt="IDFA Logo" class="festival-logo">
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- NEW: Third Project Detail Section with Video Container -->
+<div class="project-detail-section">
+    <!-- Project Content Container with horizontal layout for 1280px+ -->
+    <div class="project-content">
+        <!-- Left side: Project info container -->
+        <div class="project-info-container">
+            <div class="project-description">
+                <!-- Moved project title inside project-description -->
+                <h2 class="project-title">/ˈbôrdərˌlands/</h2>
+                <div class="project-text">
+                    <span class="tech-badge">Augmented Reality</span>
+                    <span class="tech-badge">Volumetric Capture</span>
+                    <span class="tech-badge">Photogrammetry</span>
+                </div>
+                <div class="project-text">
+                    /ˈbôrdərˌlands/﻿ is an Augmented Reality documentary about the people who find themselves stranded at the Southern doorstep of the US. These are the stories of the lives put on hold at the Chaparral migrant camp in Tijuana, Mexico.
+
+                </div>
+                <div class="project-text">
+                    This AR documentary employs videogrammetry to interview Central American asylum seekers. /ˈbôrdərˌlands/ also uses photogrammetry to recreate the border wall in Augmented Reality. The design of the bars of the wall is lenticular, which means that a person sees a different image depending on the perspective they look at it from.
+                </div>
+                <div class="project-credits">
+                    <div class="credit-line">Producer: <span class="credit-name">Pablo Mahave</span></div>
+                    <div class="credit-line">Production Company: <span class="credit-name">AM:PM</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right side: Project media container with video instead of carousel -->
+        <div class="project-media">
+            <div class="video-container">
+                <video controls controlsList="nodownload" disablePictureInPicture poster="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/borderlands/picks/borderlands_thumbnail.jpg">
+                    <source src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/borderlands/picks/borderlands_video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- NEW: Fourth Project Detail Section with Video Container and Reversed Layout -->
+<div class="project-detail-section">
+    <!-- UPDATED: Project Content Container with reversed layout -->
+    <div class="project-content">
+        <!-- Left side: Project media container with video (moved from right) -->
+        <div class="project-media">
+            <div class="video-container">
+                <video id="onsight-360-video" controls controlsList="nodownload" class="video-360" poster="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/onsight/on_sight_crop.jpg">
+                    <source src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/onsight/onsight_video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+        
+        <!-- Right side: Project info container (moved from left) -->
+        <div class="project-info-container">
+            <div class="project-description">
+                <!-- Moved project title inside project-description -->
+                <h2 class="project-title">On Sight Immersive</h2>
+                <div class="project-text">
+                    <span class="tech-badge">Immersive 360 Video</span>
+                </div>
+                <div class="project-text">
+                    On Sight is the VR documentary to follow the progress of three Afghan brothers seeking asylum in Greece. They want to be seen as talented humans but from the moment their boat was sighted off the coast of Lesbos they have been known simply as refugees. If asylum is denied, they will be deported. But for now they have each other, and they have hope.
+                </div>
+                <div class="project-text">
+                    Step inside a living ceremony where four participants dance, chant, and connect in real time—linked by a glowing rope of prayer beads that responds to your every move. Guided by hypnotic rhythms and sacred chants, your movements unlock waves of light, sound, and sacred geometry in a shared virtual space.
+                </div>
+                <div class="project-credits">
+                    <div class="credit-line">Associate Producer: <span class="credit-name">Pablo Mahave</span></div>
+                    <div class="credit-line">Production Company: <span class="credit-name">EVRealities</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- NEW: Third Project Detail Section with Video Container -->
+<div class="project-detail-section">
+    <!-- Project Content Container with horizontal layout for 1280px+ -->
+    <div class="project-content">
+        <!-- Left side: Project info container -->
+        <div class="project-info-container">
+            <div class="project-description">
+                <!-- Moved project title inside project-description -->
+                <h2 class="project-title">AlJazeera Contrast</h2>
+                <div class="project-text">
+                    <span class="tech-badge">360° Live Action</span>
+                    <span class="tech-badge">Graphics</span>
+                </div>
+                <div class="project-text">
+                    Born of a theoretical utopia and dubbed a new French "City in Space", the Espaces Abraxas in Noisy-le-Grand were designed by Spanish architect Ricardo Bofill in the late 70s and early 80s. The aim was to mix social classes and build a theatrical landmark. These 19-story buildings consist of 610 apartments in what looks like a surreal ocean of concrete. 
+                </div>
+                <div class="project-text">
+                    Ricardo Bofill recently stated in an interview with Le Monde that he believed he could change the city, but in the end, "nothing happened". There has been talks about demolition for some time, but it always meet resident's opposition. They feel home here.
+                </div>
+                <div class="project-credits">
+                    <div class="credit-line">Producer: <span class="credit-name">Pablo Mahave</span></div>
+                    <div class="credit-line">Production Company: <span class="credit-name">Targo Storytelling Lab</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right side: Project media container with video instead of carousel -->
+        <div class="project-media">
+            <div class="video-container">
+                <video id="aljazeera-360-video" controls controlsList="nodownload" class="video-360" poster="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/aljazeera/picks/aljazeera_thumbnail.jpg">
+                    <source src="/Users/notyourlaptop/github/notyourlaptop.github.io/assets/aljazeera/picks/aljazeera_video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- NEW: Contact Section -->
+<div class="contact-section">
+    <h2 class="contact-title">Get in touch!</h2>
+    <a href="https://www.linkedin.com/in/pablomahave/" target="_blank" class="contact-link">LinkedIn</a>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const heroContainer = document.querySelector('.hero-container');
+    const nameContainer = document.querySelector('.name-container');
+    const subtitleContainer = document.querySelector('.subtitle-container');
+    const workStatementSection = document.querySelector('.work-statement-section');
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    const mediaItems = document.querySelectorAll('.media-item');
+    const dynamicTexts = document.querySelectorAll('.dynamic-text');
+    
+    // Dynamic text animation variables
+    let currentTextIndex = 0;
+    let textAnimationInterval = null;
+    let animationStarted = false;
+    
+    // Store viewport dimensions
+    let viewportWidth = window.innerWidth;
+    let viewportHeight = window.innerHeight;
+    
+    // Global scaling factor of 1.5 as requested
+    const globalScaleFactor = 1.5;
+    
+    // UPDATED: Animation timing constants (increased speed by factor of 1.5)
+    const TEXT_CHANGE_INTERVAL = 2000; // Reduced from 3000ms to 2000ms
+    const TRANSITION_DURATION = 533; // Reduced from 800ms to 533ms
+    
+    // Function to set container dimensions based on image aspect ratio
+    function setContainerDimensions() {
+        // Calculate responsive scaling factor based on viewport width
+        let responsiveScaleFactor = 1;
+        if (viewportWidth < 1200) {
+            responsiveScaleFactor = Math.max(0.7, viewportWidth / 1200);
+        }
+        if (viewportWidth < 768) {
+            responsiveScaleFactor = Math.max(0.5, viewportWidth / 1200);
+        }
+        if (viewportWidth < 480) {
+            responsiveScaleFactor = Math.max(0.4, viewportWidth / 1200);
+        }
+        
+        mediaItems.forEach(container => {
+            const img = container.querySelector('img');
+            
+            // Create a new Image object to get natural dimensions
+            const tempImg = new Image();
+            tempImg.src = img.src;
+            tempImg.crossOrigin = "anonymous"; // Add crossOrigin to avoid CORS issues
+            
+            tempImg.onload = function() {
+                const naturalWidth = this.width;
+                const naturalHeight = this.height;
+                const aspectRatio = naturalWidth / naturalHeight;
+                
+                // Get max width as percentage of viewport from data attribute
+                const maxWidthPercent = parseFloat(img.dataset.maxWidth) || 20;
+                
+                // Apply the global scaling factor and responsive scaling to the base size
+                let maxWidth = (viewportWidth * maxWidthPercent / 100) * globalScaleFactor * responsiveScaleFactor;
+                
+                // Apply specific scaling factors to individual items
+                if (container.classList.contains('item-5')) {
+                    maxWidth = maxWidth * 0.65; // Reduce to 65% of original size
+                }
+
+                if (container.classList.contains('item-1')) {
+                    maxWidth = maxWidth * 0.65; // Reduce to 65% of original size
+                }
+
+                if (container.classList.contains('item-6')) {
+                    maxWidth = maxWidth * 0.75; // Reduce to 75% of original size
+                }
+                
+                // Calculate dimensions preserving aspect ratio
+                let width, height;
+                
+                if (aspectRatio >= 1) {
+                    // Landscape or square image
+                    width = maxWidth;
+                    height = width / aspectRatio;
+                } else {
+                    // Portrait image
+                    height = Math.min(viewportHeight * 0.5 * globalScaleFactor * responsiveScaleFactor, maxWidth / aspectRatio * 1.5);
+                    width = height * aspectRatio;
+                    
+                    // Apply specific scaling factors to individual items for height calculation too
+                    if (container.classList.contains('item-5')) {
+                        height = height * 0.65;
+                        width = width * 0.65;
+                    }
+
+                    if (container.classList.contains('item-1')) {
+                        height = height * 0.65;
+                        width = width * 0.65;
+                    }
+
+                    if (container.classList.contains('item-6')) {
+                        height = height * 0.75;
+                        width = width * 0.75;
+                    }
+                }
+                
+                // Set container dimensions
+                container.style.width = `${width}px`;
+                container.style.height = `${height}px`;
+                
+                // Special handling for center image - already has the global scaling factor applied
+                if (container.classList.contains('item-center')) {
+                    // Make center image larger, but don't double-apply the global scaling factor
+                    // Apply responsive scaling to center image as well
+                    container.style.width = `${width * 1.5}px`;
+                    container.style.height = `${height * 1.5}px`;
+                }
+                
+                // Adjust positioning for larger images to prevent overflow
+                adjustPositioning(container, responsiveScaleFactor);
+            };
+        });
+    }
+    
+    // Function to adjust positioning to prevent images from going off-screen
+    function adjustPositioning(container, responsiveScaleFactor) {
+        const rect = container.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+        
+        // Preserve original positioning logic but adjust for responsive scaling
+        if (container.classList.contains('item-1')) {
+            container.style.left = `${Math.max(5, 15 - (globalScaleFactor - 1) * 10 * responsiveScaleFactor)}%`;
+            container.style.top = `${Math.max(5, 10 - (globalScaleFactor - 1) * 5 * responsiveScaleFactor)}%`;
+            // Give a bit more space for the smaller image
+            container.style.marginLeft = '10px';
+            container.style.marginTop = '5px';
+        }
+        else if (container.classList.contains('item-2')) {
+            container.style.right = `${Math.max(5, 15 - (globalScaleFactor - 1) * 10 * responsiveScaleFactor)}%`;
+            container.style.top = `${Math.max(5, 10 - (globalScaleFactor - 1) * 5 * responsiveScaleFactor)}%`;
+        }
+        else if (container.classList.contains('item-3')) {
+            container.style.left = `${Math.max(5, 10 - (globalScaleFactor - 1) * 5 * responsiveScaleFactor)}%`;
+            container.style.bottom = `${Math.max(5, 15 - (globalScaleFactor - 1) * 10 * responsiveScaleFactor)}%`;
+        }
+        else if (container.classList.contains('item-4')) {
+            container.style.right = `${Math.max(5, 10 - (globalScaleFactor - 1) * 5 * responsiveScaleFactor)}%`;
+            container.style.bottom = `${Math.max(5, 10 - (globalScaleFactor - 1) * 5 * responsiveScaleFactor)}%`;
+        }
+        else if (container.classList.contains('item-5')) {
+            // Position item-5 horizontally at 38% from the left
+            container.style.left = '5%';
+            container.style.top = '50%';
+            container.style.transform = 'translateY(-50%)';
+        }
+        else if (container.classList.contains('item-6')) {
+            // Position item-6 horizontally at right side, moved further right
+            container.style.right = '2%';
+            container.style.top = '50%';
+            container.style.transform = 'translateY(-50%)';
+        }
+    }
+    
+    // UPDATED: Function to animate the dynamic text with faster timing
+    function startDynamicTextAnimation() {
+        if (animationStarted) return;
+        
+        animationStarted = true;
+        
+        // Reset all texts first
+        dynamicTexts.forEach(text => {
+            text.classList.remove('active', 'fade-out');
+        });
+        
+        // Show the first text initially
+        currentTextIndex = 0;
+        dynamicTexts[currentTextIndex].classList.add('active');
+        
+        // Set up the interval to cycle through texts with faster timing
+        textAnimationInterval = setInterval(() => {
+            // Add fade-out class to current text
+            dynamicTexts[currentTextIndex].classList.add('fade-out');
+            
+            // After fade-out animation completes, remove both classes and update index
+            setTimeout(() => {
+                dynamicTexts[currentTextIndex].classList.remove('active', 'fade-out');
+                
+                // Move to next text (loop back to start if at end)
+                currentTextIndex = (currentTextIndex + 1) % dynamicTexts.length;
+                
+                // Add active class to new current text
+                dynamicTexts[currentTextIndex].classList.add('active');
+            }, TRANSITION_DURATION); // Match the CSS transition duration
+            
+        }, TEXT_CHANGE_INTERVAL); // Faster interval for text changes
+    }
+    
+    // Function to stop the dynamic text animation
+    function stopDynamicTextAnimation() {
+        if (!animationStarted) return;
+        
+        clearInterval(textAnimationInterval);
+        
+        // Reset all texts
+        dynamicTexts.forEach(text => {
+            text.classList.remove('active', 'fade-out');
+        });
+        
+        currentTextIndex = 0;
+        animationStarted = false;
+    }
+    
+    // Set initial dimensions
+    setContainerDimensions();
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        // Update viewport dimensions
+        viewportWidth = window.innerWidth;
+        viewportHeight = window.innerHeight;
+        
+        // Recalculate dimensions with new viewport size
+        setContainerDimensions();
+        
+        // Update scroll animation based on current scroll position
+        updateScrollAnimation(window.scrollY);
+    });
+    
+    // Animation sequence
+    setTimeout(() => {
+        // Animate media items in from outside
+        heroContainer.classList.add('animated');
+        
+        // After media items are in place, add focus/blur effect
+        setTimeout(() => {
+            heroContainer.classList.add('focused');
+            
+            // Set up click interaction to toggle focus
+            heroContainer.addEventListener('click', toggleFocus);
+        }, 2500);
+    }, 1000);
+    
+    function toggleFocus() {
+        heroContainer.classList.toggle('focused');
+    }
+
+    // Improved scroll animation
+    // Define animation parameters
+    const scrollDistance = window.innerHeight; // Full viewport height for the animation
+    const secondScrollDistance = window.innerHeight * 2; // Second full viewport height for the second animation
+    const thirdScrollDistance = window.innerHeight * 3; // Third full viewport height for the third animation
+    let lastScrollY = 0;
+    let ticking = false;
+    
+    // Function to update animations based on scroll position
+    function updateScrollAnimation(scrollY) {
+        // Calculate progress for first animation (0 to 1)
+        const progress1 = Math.min(1, Math.max(0, scrollY / scrollDistance));
+        
+        // Calculate progress for second animation (0 to 1)
+        // This starts after the first animation completes
+        const progress2 = Math.min(1, Math.max(0, (scrollY - scrollDistance) / scrollDistance));
+        
+        // Calculate progress for third animation (0 to 1)
+        // This starts after the second animation completes
+        const progress3 = Math.min(1, Math.max(0, (scrollY - secondScrollDistance) / scrollDistance));
+        
+        // 1. Animate Pablo Mahave text up and out
+        // Start at center (50% - 0%), move up to -100% (completely out of view)
+        const nameY = -100 * progress1; // percentage of viewport height
+        nameContainer.style.transform = `translate(-50%, calc(-50% + ${nameY}vh))`;
+        nameContainer.style.opacity = 1 - progress1; // Fade out as it moves up
+        
+        // 2. Animate subtitle container from below into center
+        // Start at 150% (below viewport), move up to 50% (center)
+        const subtitleY = 150 - (progress1 * 100); // from 150% to 50%
+        subtitleContainer.style.top = `${subtitleY}%`;
+        
+        // 3. Handle the transition to the third section
+        if (progress2 > 0) {
+            // Make the work statement section visible
+            workStatementSection.classList.add('visible');
+            
+            // Calculate a separate progress for the transition effect
+            // We want this transition to happen in the first 40% of the second scroll
+            const transitionProgress = Math.min(1, progress2 / 0.4);
+            
+            // Fade out subtitle as work statement fades in
+            subtitleContainer.style.opacity = 1 - transitionProgress;
+            
+            // Fade out media items
+            if (transitionProgress > 0.1) {
+                heroContainer.classList.add('fade-out');
+            } else {
+                heroContainer.classList.remove('fade-out');
+            }
+            
+            // Add solid background to work statement when transition is complete
+            if (transitionProgress >= 0.9) {
+                workStatementSection.classList.add('solid-bg');
+                
+                // Start the dynamic text animation when the section is fully visible
+                if (transitionProgress >= 1 && !animationStarted) {
+                    // Add a small delay to ensure the section is fully visible
+                    setTimeout(() => {
+                        startDynamicTextAnimation();
+                    }, 300);
+                }
+            } else {
+                workStatementSection.classList.remove('solid-bg');
+            }
+        } else {
+            workStatementSection.classList.remove('visible');
+            workStatementSection.classList.remove('solid-bg');
+            heroContainer.classList.remove('fade-out');
+            stopDynamicTextAnimation();
+        }
+        
+        // 4. Hide scroll indicator after scrolling starts
+        if (progress1 > 0.1) {
+            scrollIndicator.classList.add('hidden');
+        } else {
+            scrollIndicator.classList.remove('hidden');
+        }
+        
+        // 5. Handle the visibility of the work statement section when scrolling past it
+        if (progress3 > 0.1) {
+            workStatementSection.style.opacity = 0;
+            workStatementSection.style.visibility = 'hidden';
+        } else {
+            workStatementSection.style.opacity = 1;
+            workStatementSection.style.visibility = 'visible';
+        }
+    }
+    
+    // Listen for scroll events
+    window.addEventListener('scroll', function(e) {
+        lastScrollY = window.scrollY;
+        
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                updateScrollAnimation(lastScrollY);
+                ticking = false;
+            });
+            
+            ticking = true;
+        }
+    });
+
+    // Carousel functionality
+    document.querySelectorAll('.project-detail-section').forEach(section => {
+        const slides = section.querySelectorAll('.carousel-slide');
+        const prevButton = section.querySelector('.carousel-control.prev-slide');
+        const nextButton = section.querySelector('.carousel-control.next-slide');
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[n].classList.add('active');
+        }
+
+        if (prevButton && nextButton) {
+            prevButton.addEventListener('click', () => {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+            });
+
+            nextButton.addEventListener('click', () => {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            });
+
+            showSlide(currentSlide); // Show initial slide
+        }
+    });
+    
+    // 360 Video Player functionality
+    function setup360VideoPlayer() {
+        // Check for 360 videos
+        const videos360 = document.querySelectorAll('.video-360');
+        
+        if (videos360.length > 0) {
+            // Load Three.js dynamically
+            const threeScript = document.createElement('script');
+            threeScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+            threeScript.onload = function() {
+                // Load OrbitControls after Three.js is loaded
+                const orbitScript = document.createElement('script');
+                orbitScript.src = 'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js';
+                orbitScript.onload = initializeVideos;
+                document.head.appendChild(orbitScript);
+            };
+            document.head.appendChild(threeScript);
+        }
+    }
+    
+    function initializeVideos() {
+        const videos360 = document.querySelectorAll('.video-360');
+        
+        videos360.forEach(video => {
+            // Create a container for the 360 player
+            const container = video.parentElement;
+            const videoId = video.id;
+            
+            // Create a canvas for Three.js
+            const canvas = document.createElement('canvas');
+            canvas.id = `canvas-${videoId}`;
+            canvas.className = 'video-360-canvas';
+            canvas.style.position = 'absolute';
+            canvas.style.top = '0';
+            canvas.style.left = '0';
+            canvas.style.width = '100%';
+            canvas.style.height = '100%';
+            canvas.style.display = 'none'; // Hide initially
+            container.appendChild(canvas);
+            
+            // Create a button to toggle 360 mode
+            const toggleButton = document.createElement('button');
+            toggleButton.className = 'toggle-360-btn';
+            toggleButton.textContent = 'Toggle 360° View';
+            toggleButton.style.position = 'absolute';
+            toggleButton.style.bottom = '10px';
+            toggleButton.style.right = '10px';
+            toggleButton.style.zIndex = '10';
+            toggleButton.style.background = 'rgba(0,0,0,0.7)';
+            toggleButton.style.color = 'white';
+            toggleButton.style.border = 'none';
+            toggleButton.style.padding = '8px 12px';
+            toggleButton.style.borderRadius = '4px';
+            toggleButton.style.cursor = 'pointer';
+            toggleButton.style.fontSize = '12px';
+            container.appendChild(toggleButton);
+            
+            // Set up Three.js scene
+            let scene, camera, renderer, controls;
+            let is360Mode = false;
+            
+            function init360() {
+                // Create scene
+                scene = new THREE.Scene();
+                
+                // Create camera
+                camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+                camera.position.set(0, 0, 0.01); // Slightly offset to avoid issues
+                
+                // Create renderer
+                renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+                renderer.setSize(container.clientWidth, container.clientHeight);
+                
+                // Create sphere
+                const geometry = new THREE.SphereGeometry(500, 60, 40);
+                geometry.scale(-1, 1, 1); // Invert the sphere
+                
+                // Create video texture
+                const texture = new THREE.VideoTexture(video);
+                texture.minFilter = THREE.LinearFilter;
+                texture.format = THREE.RGBFormat;
+                
+                const material = new THREE.MeshBasicMaterial({ map: texture });
+                const sphere = new THREE.Mesh(geometry, material);
+                scene.add(sphere);
+                
+                // Add controls
+                controls = new THREE.OrbitControls(camera, renderer.domElement);
+                controls.enableZoom = false;
+                controls.enablePan = false;
+                controls.rotateSpeed = 0.5;
+                
+                // Handle resize
+                window.addEventListener('resize', onWindowResize, false);
+                
+                // Start animation
+                animate();
+            }
+            
+            function onWindowResize() {
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+            }
+            
+            function animate() {
+                requestAnimationFrame(animate);
+                controls.update();
+                renderer.render(scene, camera);
+            }
+            
+            // Toggle between normal and 360 mode
+            toggleButton.addEventListener('click', function() {
+                if (!is360Mode) {
+                    // Switch to 360 mode
+                    if (!scene) init360(); // Initialize if first time
+                    video.style.display = 'none';
+                    canvas.style.display = 'block';
+                    is360Mode = true;
+                    toggleButton.textContent = 'Exit 360° View';
+                } else {
+                    // Switch back to normal mode
+                    video.style.display = 'block';
+                    canvas.style.display = 'none';
+                    is360Mode = false;
+                    toggleButton.textContent = 'Toggle 360° View';
+                }
+            });
+        });
+    }
+    
+    // Initialize 360 video players
+    setup360VideoPlayer();
+});
+</script>
+</body>
+</html>
