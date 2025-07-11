@@ -63,7 +63,7 @@
     /* Transform the name container into a header-like element */
     .name-container {
         position: fixed;
-        z-index: 100;
+        z-index: 200;
         text-align: center;
         padding: 2rem 4rem;
         width: 100%;
@@ -95,7 +95,7 @@
     /* Styles for the subtitle container */
     .subtitle-container {
         position: fixed;
-        z-index: 99; /* Just below the name container */
+        z-index: 150; /* Higher than item-center, below name */
         text-align: center;
         padding: 2rem 4rem;
         width: 100%;
@@ -148,6 +148,42 @@
         background-color: #000;
     }
 
+    /* Isolated container to guarantee center image is above others */
+    .center-image-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 110; /* Between other media (z: 90) and text (z: 120-200) */
+        pointer-events: none;
+    }
+
+    /* Force all non-center media items to always stay below .center-image-wrapper (.item-center is now inside wrapper) */
+    .media-item:not(.item-center) {
+        z-index: 90 !important;
+    }
+
+    /* Prevent any hero media images from rendering above the .item-center image even briefly */
+    .hero-container .media-item:not(.item-center) {
+      z-index: 90 !important;
+      will-change: transform, opacity;
+      transition-delay: 0s !important;
+    }
+
+    /* Explicitly raise .center-image-wrapper stacking context */
+    .center-image-wrapper {
+      z-index: 110;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    /* Remove .item-center z-index/position/isolation overrides (handled by wrapper) */
+
     .media-item img {
         width: 100%;
         height: 100%;
@@ -155,12 +191,11 @@
         transition: transform 0.5s ease-out;
     }
 
-    /* Initial positions for media items */
+    /* Initial position for center image inside wrapper */
     .item-center {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%) scale(0);
-        z-index: 50;
     }
 
     .item-1 {
@@ -194,7 +229,8 @@
     .item-5 {
         top: 50%;
         left: 5%;
-        transform: translate(-200%, 0) scale(0);
+        /* Initial: Far off-screen to left, vertically centered */
+        transform: translate(-150vw, -50%);
         z-index: 4;
     }
 
@@ -202,12 +238,13 @@
     .item-6 {
         top: 50%;
         right: 5%;
-        transform: translate(200%, 0) scale(0);
+        /* Initial: Far off-screen to right, vertically centered */
+        transform: translate(150vw, -50%);
         z-index: 5;
     }
 
-    /* Animation classes */
-    .hero-container.animated .item-center {
+    /* Animation classes for center image */
+    .hero-container.animated .center-image-wrapper .item-center {
         transform: translate(-50%, -50%) scale(1);
         opacity: 1;
     }
@@ -233,12 +270,12 @@
     }
 
     .hero-container.animated .item-5 {
-        transform: translate(0, 0) scale(1);
+        transform: translate(0, -50%);
         opacity: 1;
     }
 
     .hero-container.animated .item-6 {
-        transform: translate(0, 0) scale(1);
+        transform: translate(0, -50%);
         opacity: 1;
     }
 
@@ -248,14 +285,14 @@
 }
 
 /* New class for fading out media items */
-.hero-container.fade-out .media-item,
-.hero-container.fade-out .item-center {
-    opacity: 0 !important;
-    transition: opacity 1.2s ease-in-out;
-}
+    .hero-container.fade-out .media-item,
+    .hero-container.fade-out .center-image-wrapper .item-center {
+        opacity: 0 !important;
+        transition: opacity 1.2s ease-in-out;
+    }
 
     /* Staggered animation delays */
-    .hero-container.animated .item-center {
+    .hero-container.animated .center-image-wrapper .item-center {
         transition-delay: 0s;
     }
     .hero-container.animated .item-1 {
@@ -283,7 +320,7 @@
         bottom: 30px;
         left: 50%;
         transform: translateX(-50%);
-        z-index: 200;
+        z-index: 120;
         opacity: 1;
         transition: opacity 0.5s ease;
     }
@@ -1185,11 +1222,6 @@
 </div> -->
 
 <div class="hero-container">
-    <!-- Center image behind the name -->
-    <div class="media-item item-center">
-        <img src="assets/beefeater/picks/beefeater_hero.jpg" alt="Woman with Beefeater gin" data-max-width="30">
-    </div>
-
     <!-- Media items positioned absolutely -->
     <div class="media-item item-1">
         <img src="assets/snatch/picks/snatch_hero_poster.jpg" alt="Snatch TV series cast" data-max-width="22">
@@ -1210,6 +1242,13 @@
         <img src="assets/hyundai/picks/hyundai_hero.png" alt="CES 3D character" data-max-width="20">
     </div>
 
+    <!-- Isolated container to guarantee center image is above others -->
+    <div class="center-image-wrapper">
+      <div class="media-item item-center">
+        <img src="assets/beefeater/picks/beefeater_hero.jpg" alt="Woman with Beefeater gin" data-max-width="30">
+      </div>
+    </div>
+
     <!-- Name container -->
     <div class="name-container">
         <h1 class="name">Pablo Mahave</h1>
@@ -1219,15 +1258,15 @@
     <div class="subtitle-container">
         <div class="emerging-tech">Emerging Technologies</div>
         <div class="senior-producer">SENIOR PRODUCER</div>
-</div>
+    </div>
 
-<!-- Scroll indicator -->
-<div class="scroll-indicator">
-    <svg viewBox="0 0 30 50">
-        <rect x="5" y="5" width="20" height="40" rx="10" ry="10" stroke-linecap="round"/>
-        <line class="scroll-arrow" x1="15" y1="15" x2="15" y2="25" stroke-linecap="round"/>
-    </svg>
-</div>
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator">
+        <svg viewBox="0 0 30 50">
+            <rect x="5" y="5" width="20" height="40" rx="10" ry="10" stroke-linecap="round"/>
+            <line class="scroll-arrow" x1="15" y1="15" x2="15" y2="25" stroke-linecap="round"/>
+        </svg>
+    </div>
 </div>
 
 <!-- FIXED: Work Statement Section with proper structure -->
