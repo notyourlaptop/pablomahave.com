@@ -49,8 +49,15 @@
         overflow: hidden;
         top: 0;
         left: 0;
-        z-index: 1;
+        z-index: -1;
         transition: opacity 1.2s ease-in-out; /* Add transition for fading out */
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    .hero-container.animated {
+        visibility: visible;
+        opacity: 1;
     }
 
     /* Transform the name container into a header-like element */
@@ -101,6 +108,12 @@
         transform: translate(-50%, -50%);
         will-change: transform, opacity; /* Optimize for animations */
         transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+    }
+    
+    .subtitle-container.hidden {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
     }
 
     .emerging-tech {
@@ -229,15 +242,17 @@
         opacity: 1;
     }
 
-    .hero-container.focused .media-item {
-        filter: blur(5px);
-    }
+.hero-container.focused .media-item,
+.hero-container.focused .item-center {
+    filter: blur(5px);
+}
 
-    /* New class for fading out media items */
-    .hero-container.fade-out .media-item {
-        opacity: 0 !important;
-        transition: opacity 1.2s ease-in-out;
-    }
+/* New class for fading out media items */
+.hero-container.fade-out .media-item,
+.hero-container.fade-out .item-center {
+    opacity: 0 !important;
+    transition: opacity 1.2s ease-in-out;
+}
 
     /* Staggered animation delays */
     .hero-container.animated .item-center {
@@ -547,7 +562,7 @@
         flex-direction: column;
         padding: 2.5vh 5%;
         background-color: #0e0e0e;
-        margin-bottom: 10vh; /* 👈 Adjust this value up or down */
+        margin-bottom: 1vh; /* 👈 Adjust this value up or down */
     }
 
     .project-title {
@@ -614,7 +629,7 @@
     .festival-logo {
         height: 60px;
         filter: brightness(0.9);
-        border-radius: 8px;
+        border-radius: 0px;
     }
 
     /* UPDATED: Project Media Container */
@@ -1049,11 +1064,111 @@
             padding: 8px 16px;
         }
     }
-    </style>
+    
+/* 🎯 Project-specific spacing overrides */
 
+.snatch-project {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    min-height: auto; /* ⬅️ Important */
+}
+
+.hyundai-project {
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 0vh;
+    min-height: auto; /* ⬅️ Important */
+}
+
+.symphony-project {
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 4vh;
+    min-height: auto; /* ⬅️ Important */
+}
+
+.amex-project {
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 4vh;
+    min-height: auto; /* ⬅️ Important */
+}
+
+.beefeater-project {
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 4vh;
+    min-height: auto; /* ⬅️ Important */
+}
+
+.aicp-project {
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 4vh;
+    min-height: auto; /* ⬅️ Important */
+}
+
+.dell-project {
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 4vh;
+    min-height: auto; /* ⬅️ Important */
+}
+
+.zikr-project {
+    margin-bottom: 8vh;
+    min-height: auto;
+}
+
+.borderlands-project {
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 4vh;
+    min-height: auto; /* ⬅️ Important */
+}
+
+.onsight-project {
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 10vh;
+    min-height: auto; /* ⬅️ Important */
+}
+
+.aljazeera-project {
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 20vh;
+    min-height: auto; /* ⬅️ Important */
+}
+
+#page-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0e0e0e;
+    z-index: -2;
+    pointer-events: none;
+}
+
+.hero-container.fade-out {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.content-wrapper,
+.project-detail-section,
+.contact-section {
+    position: relative;
+    z-index: 2; /* ensures they stack above the hero-container */
+}
+
+</style>
 </head>
 <body>
-
+<div id="page-background"></div>
 <!-- WORK IN PROGRESS MESSAGE -->
 <!-- <div style="
   position: fixed;
@@ -1070,40 +1185,40 @@
 </div> -->
 
 <div class="hero-container">
-<!-- Center image behind the name -->
-<div class="media-item item-center">
-    <img src="assets/beefeater/picks/beefeater_hero.jpg" alt="Woman with Beefeater gin" data-max-width="30">
-</div>
+    <!-- Center image behind the name -->
+    <div class="media-item item-center">
+        <img src="assets/beefeater/picks/beefeater_hero.jpg" alt="Woman with Beefeater gin" data-max-width="30">
+    </div>
 
-<!-- Media items positioned absolutely -->
-<div class="media-item item-1">
-    <img src="assets/snatch/picks/snatch_poster.jpg" alt="Snatch TV series cast" data-max-width="22">
-</div>
-<div class="media-item item-2">
-    <img src="assets/borderlands/picks/borderlands_thumbnail.jpg" alt="Border Lands Documentary" data-max-width="25">
-</div>
-<div class="media-item item-3">
-    <img src="assets/onsight/on_sight_crop.jpg" alt="Life jackets film festival" data-max-width="20">
-</div>
-<div class="media-item item-4">
-    <img src="assets/genai/genai_claymation.jpg" alt="Clay figures swimming with Statue of Liberty" data-max-width="18">
-</div>
-<div class="media-item item-5">
-    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/womanheadset-4MHa35hgbeMg6L3p6NzLYKSTbbdQNL.png" alt="Woman with VR headset" data-max-width="22">
-</div>
-<div class="media-item item-6">
-    <img src="assets/hyundai/picks/hyundai_hero.png" alt="CES 3D character" data-max-width="20">
-</div>
+    <!-- Media items positioned absolutely -->
+    <div class="media-item item-1">
+        <img src="assets/snatch/picks/snatch_hero_poster.jpg" alt="Snatch TV series cast" data-max-width="22">
+    </div>
+    <div class="media-item item-2">
+        <img src="assets/borderlands/picks/borderlands_thumbnail.jpg" alt="Border Lands Documentary" data-max-width="25">
+    </div>
+    <div class="media-item item-3">
+        <img src="assets/onsight/on_sight_crop.jpg" alt="Life jackets film festival" data-max-width="20">
+    </div>
+    <div class="media-item item-4">
+        <img src="assets/genai/genai_claymation.jpg" alt="Clay figures swimming with Statue of Liberty" data-max-width="18">
+    </div>
+    <div class="media-item item-5">
+        <img src="assets/aicp/picks/aicp_thumbnail2.png" alt="Woman with face tracking headset" data-max-width="22">
+    </div>
+    <div class="media-item item-6">
+        <img src="assets/hyundai/picks/hyundai_hero.png" alt="CES 3D character" data-max-width="20">
+    </div>
 
-<!-- Name container -->
-<div class="name-container">
-    <h1 class="name">Pablo Mahave</h1>
-</div>
+    <!-- Name container -->
+    <div class="name-container">
+        <h1 class="name">Pablo Mahave</h1>
+    </div>
 
-<!-- Subtitle container (separate from name for independent animation) -->
-<div class="subtitle-container">
-    <div class="emerging-tech">Emerging Technologies</div>
-    <div class="senior-producer">SENIOR PRODUCER</div>
+    <!-- Subtitle container (separate from name for independent animation) -->
+    <div class="subtitle-container">
+        <div class="emerging-tech">Emerging Technologies</div>
+        <div class="senior-producer">SENIOR PRODUCER</div>
 </div>
 
 <!-- Scroll indicator -->
@@ -1118,7 +1233,7 @@
 <!-- FIXED: Work Statement Section with proper structure -->
 <div class="work-statement-section">
 <div class="work-statement-line work-statement-line-1">I work with</div>
-<div class="work-statement-line work-statement-line-2">emerging technologies</div>
+<div class="work-statement-line work-statement-line-2">next-gen media</div>
 <div class="work-statement-line work-statement-line-3">
     to create
     <span class="dynamic-text-wrapper">
@@ -1136,7 +1251,7 @@
 <!-- MODIFIED: Skills and Passion Section - now standard flow -->
 <div class="skills-passion-section">
     <div class="skills-column">
-        <h2 class="section-title">Skills</h2>
+        <h2 class="section-title">SKILLS</h2>
         <div class="skills-list">
             <div class="skill-item">Generative AI</div>
             <div class="skill-item">Virtual Reality</div>
@@ -1149,7 +1264,7 @@
         </div>
     </div>
     <div class="passion-column">
-        <h2 class="section-title">Vision</h2>
+        <h2 class="section-title">VISION</h2>
         <div class="passion-text">
             <!-- I create bold new storytelling formats by fusing bleeding-edge technology with creative vision to craft memorable experiences that provoke audiences to feel, play, and connect. -->
             I fuse bleeding-edge technologies with bold storytelling to craft experiences that move, engage, and connect audiences.
@@ -1169,7 +1284,7 @@
 </div>
 
 <!-- NEW: Third Project Detail Section with Video Container -->
-<div class="project-detail-section">
+<div class="project-detail-section snatch-project">
     <!-- Project Content Container with horizontal layout for 1280px+ -->
     <div class="project-content">
         <!-- Left side: Project info container -->
@@ -1214,7 +1329,7 @@
 </div>
 
 <!-- NEW: Fourth Project Detail Section with Video Container and Reversed Layout -->
-<div class="project-detail-section">
+<div class="project-detail-section hyundai-project">
     <!-- UPDATED: Project Content Container with reversed layout -->
     <div class="project-content">
         <!-- Left side: Project media container with video (moved from right) -->
@@ -1242,7 +1357,7 @@
                     At CES, a towering five-meter-high LED volume became the gateway to a living, breathing Hyundai Metaverse. Visitors stepped into a fully immersive, interactive world where they were instantly scanned and transformed into custom avatars—each one unique, dynamic, and  generated in real time.
                 </div>
                 <div class="project-text">
-                    Inside, the digital doubles weren't just static visuals—they moved, reacted, and came alive through the power of live motion capture and facial expression tracking, performed behind the scenes by skilled artists. The result was a surreal, high-tech mirror where guests could meet and interact with their virtual selves in a space that felt like stepping into the future of human connection.
+                    Inside, the digital doubles weren't just static visuals—they moved, reacted, and came alive through the power of live motion capture and facial expression tracking, performed behind the scenes by skilled Mo-Cap artists. The result was a surreal, high-tech mirror where guests could meet and interact with their virtual selves in a space that felt like stepping into the future of human connection.
                 </div>
                 <div class="project-credits">
                     <div class="credit-line">Senior Producer: <span class="credit-name">Pablo Mahave</span></div>
@@ -1259,7 +1374,7 @@
 </div>
 
 <!-- NEW: Third Project Detail Section with Video Container -->
-<div class="project-detail-section">
+<div class="project-detail-section symphony-project">
     <!-- Project Content Container with horizontal layout for 1280px+ -->
     <div class="project-content">
         <!-- Left side: Project info container -->
@@ -1274,17 +1389,17 @@
                     <span class="tech-badge">VFX</span>
                 </div>
                 <div class="project-text">
-                    Symphony VR is a Cannes-nominated immersive audiovisual experience that transports audiences deep into the heart of classical music, guided by the celebrated maestro Gustavo Dudamel (Los Angeles Philharmonic). This cinematic virtual reality journey offers a uniquely intimate perspective, allowing spectators to not only witness but feel music from within—whether entering the interior of an instrument or standing among the musicians of the prestigious Mahler Chamber Orchestra.
+                    Symphony VR is a Cannes-nominated immersive audiovisual experience that transports audiences deep into the heart of classical music, guided by the celebrated maestro Gustavo Dudamel of the Los Angeles Philharmonic. 
                 </div>
                 <div class="project-text">
-                    Blending 360° live-action footage with stunning CGI and VFX, and utilizing cutting-edge technology, Symphony VR creates a vivid, multi-sensory environment. Featuring powerful compositions by Beethoven, Mahler, and Bernstein, the experience takes viewers on an emotional voyage, helping them understand and connect with classical music like never before.
+                    Blending 360° live-action footage with stunning CGI and VFX, Symphony VR creates a vivid, multi-sensory environment. Featuring powerful compositions by Beethoven, Mahler, and Bernstein, the experience takes viewers on an emotional voyage, helping them understand and connect with classical music like never before.
                 </div>
                 <div class="project-credits">
                     <div class="credit-line">Producer: <span class="credit-name">Pablo Mahave</span></div>
                     <div class="credit-line">Production Company: <span class="credit-name">Visualise London</span></div>
                 </div>
                 <div class="festival-logos">
-                    <img src="assets/symphony/picks/cannes_logo.svg.png" alt="Cannes Marche du Film Logo" class="festival-logo">
+                    <img src="assets/symphony/picks/cannes_logo.png" alt="Cannes Marche du Film Logo" class="festival-logo">
                     <img src="assets/symphony/picks/mahler_logo.png" alt="Mahler Chamber Orchestra Logo" class="festival-logo">
                     <img src="assets/symphony/picks/caixa_logo.png" alt="La Caixa Logo" class="festival-logo">
                 </div>
@@ -1306,7 +1421,7 @@
 
 
 <!-- NEW: Fourth Project Detail Section with Video Container and Reversed Layout -->
-<div class="project-detail-section">
+<div class="project-detail-section amex-project">
     <!-- UPDATED: Project Content Container with reversed layout -->
     <div class="project-content">
         <!-- Left side: Project media container with video (moved from right) -->
@@ -1325,6 +1440,11 @@
                 <!-- Moved project title inside project-description -->
                 <h2 class="project-title">American Express</h2>
                 <div class="project-text">
+                    <span class="tech-badge">Social Versioning Output</span>
+                    <span class="tech-badge">Augmented Reality</span>
+                    <span class="tech-badge">Digital Placement</span>
+                </div>
+                <div class="project-text">
                     American Express Cardscapes is a visually striking and emotionally resonant social media initiative that reimagines the Platinum Card as a gateway to transformative experiences. Through a series of dynamic visuals and animations, the campaign illustrates how the card empowers members to explore new horizons and embrace unique adventures.
                 </div>
                 <div class="project-text">
@@ -1340,7 +1460,7 @@
 </div>
 
 <!-- NEW: Third Project Detail Section with Video Container -->
-<div class="project-detail-section">
+<div class="project-detail-section beefeater-project">
     <!-- Project Content Container with horizontal layout for 1280px+ -->
     <div class="project-content">
         <!-- Left side: Project info container -->
@@ -1355,7 +1475,7 @@
                     <span class="tech-badge">Immersive Audio</span>
                 </div>
                 <div class="project-text">
-                    BeefeaterXO blasts open the boundaries of virtual reality, throwing you headfirst into a surreal, high-octane world where food, fantasy, and myth collide. This six-minute sensory rollercoaster partners with culinary iconoclast Dabiz Muñoz to explore a dreamscape shaped by the chef's most explosive gastronomic influences. From the neon-drenched chaos of Bangkok to the steamy vibrance of Mumbai, each city is reimagined as a psychedelic playground, inhabited by mythical beings and narrative surprises. These richly stylized environments aren't just backdrops—they're alive, pulsing with energy, and designed to provoke awe at every turn.
+                    BeefeaterXO blasts open the boundaries of virtual reality, throwing you headfirst into a surreal, high-octane world where food, fantasy, and myth collide. This six-minute sensory rollercoaster partners with culinary iconoclast Dabiz Muñoz to explore a dreamscape shaped by the chef's most explosive gastronomic influences. 
                 </div>
                 <div class="project-text">
                     Muñoz's radical imagination takes full flight through cutting-edge 360º stereoscopic video captured in pristine 4K, layered with cutting edge sound design that pulls you deeper into the madness. The result is more than a VR experience—it's a cinematic fever dream where high cuisine meets high fantasy.
@@ -1387,7 +1507,7 @@
 
 
 <!-- NEW: Fourth Project Detail Section with Video Container and Reversed Layout -->
-<div class="project-detail-section">
+<div class="project-detail-section aicp-project">
     <!-- UPDATED: Project Content Container with reversed layout -->
     <div class="project-content">
         <!-- Left side: Project media container with video (moved from right) -->
@@ -1416,9 +1536,6 @@
                 <div class="project-text">
                     Violet isn't just a character—she's a real-time virtual persona, brought to life by a live performer wearing a full motion-capture suit with facial expression tracking. Every blink, smirk, and dance move was streamed live, allowing Violet to interact with guests in real time. Just pure, spontaneous, face-to-face connection through a screen.
                 </div>
-                <div class="project-text">
-                    This was more than tech. It was theater. A next-gen social experience where cutting-edge performance met playful nostalgia, and where every conversation sparked with one-of-a-kind energy. In a world craving authentic interaction, Violet turned the ordinary into something unforgettable.
-                </div>
                 <div class="project-credits">
                     <div class="credit-line">Senior Producer: <span class="credit-name">Pablo Mahave</span></div>
                     <div class="credit-line">Production Company: <span class="credit-name">The Mill</span></div>
@@ -1429,14 +1546,14 @@
 </div>
 
 <!-- NEW: Third Project Detail Section with Video Container -->
-<div class="project-detail-section">
+<div class="project-detail-section dell-project">
     <!-- Project Content Container with horizontal layout for 1280px+ -->
     <div class="project-content">
         <!-- Left side: Project info container -->
         <div class="project-info-container">
             <div class="project-description">
                 <!-- Moved project title inside project-description -->
-                <h2 class="project-title">Dell Experience Centre</h2>
+                <h2 class="project-title">Dell Experience</h2>
                 <div class="project-text">
                     <span class="tech-badge">Interactive VR</span>
                     <span class="tech-badge">360° Live Action</span>
@@ -1490,7 +1607,7 @@
 </div>
 
 <!-- NEW: Fourth Project Detail Section with Video Container and Reversed Layout -->
-<div class="project-detail-section">
+<div class="project-detail-section toyota-project">
     <!-- UPDATED: Project Content Container with reversed layout -->
     <div class="project-content">
         <!-- Left side: Project media container with video (moved from right) -->
@@ -1539,7 +1656,7 @@
 </div>
 
 <!-- NEW: Fourth Project Detail Section with Video Container and Reversed Layout -->
-<div class="project-detail-section">
+<div class="project-detail-section zikr-project">
     <!-- UPDATED: Project Content Container with reversed layout -->
     <div class="project-content">
         <!-- Left side: Project media container with video (moved from right) -->
@@ -1567,18 +1684,15 @@
                 </div>
                 <div class="project-text">
                     Step inside a living ceremony where four participants dance, chant, and connect in real time—linked by a glowing rope of prayer beads that responds to your every move. Guided by hypnotic rhythms and sacred chants, your movements unlock waves of light, sound, and sacred geometry in a shared virtual space.
-                </div>
-                <div class="project-text">
-                    Powered by full-body motion capture, spatial audio, and real-time networked avatars, Zikr transforms ritual into revelation. Forget passive viewing—this is faith you feel: through music, through movement, through presence. Sufism like you've never seen it—ecstatic, inclusive, and alive.
-                </div>
+                </div>  
                 <div class="project-credits">
                     <div class="credit-line">Associate Producer: <span class="credit-name">Pablo Mahave</span></div>
                     <div class="credit-line">Production Company: <span class="credit-name">Sensorium / Superbright</span></div>
                 </div>
                 <div class="festival-logos">
                     <img src="assets/zikr/picks/sundance_long_logo.png" alt="Sundance Logo" class="festival-logo">
-                    <img src="assets/zikr/picks/idfa_doclab_logo.png" alt="IDFA Logo" class="festival-logo">
                     <img src="assets/zikr/picks/dogwoof_logo_square.png" alt="Dogwoof Logo" class="festival-logo">
+                    <img src="assets/zikr/picks/idfa_logo.png" alt="IDFA Logo" class="festival-logo">
                 </div>
                 </div>
             </div>
@@ -1586,7 +1700,7 @@
     </div>
 
     <!-- UPDATED: Project Detail Section with Thumbnail Only -->
-<div class="project-detail-section">
+    <div class="project-detail-section borderlands-project">
     <!-- Project Content Container with horizontal layout for 1280px+ -->
     <div class="project-content">
         <!-- Left side: Project info container -->
@@ -1621,7 +1735,7 @@
 </div>
 
 <!-- UPDATED: Project Detail Section with Thumbnail Only and Reversed Layout -->
-<div class="project-detail-section">
+<div class="project-detail-section onsight-project">
     <!-- Project Content Container with reversed layout -->
     <div class="project-content">
         <!-- Left side: Project media container with static thumbnail image -->
@@ -1636,10 +1750,15 @@
             <div class="project-description">
                 <h2 class="project-title">On Sight Immersive</h2>
                 <div class="project-text">
-                    <span class="tech-badge">Immersive 360 Video</span>
+                    <span class="tech-badge">360 Video</span>
+                    <span class="tech-badge">Live Action</span>
+                    <span class="tech-badge">Documentary</span>
                 </div>
                 <div class="project-text">
-                    On Sight is the VR documentary to follow the progress of three Afghan brothers seeking asylum in Greece. They want to be seen as talented humans but from the moment their boat was sighted off the coast of Lesbos they have been known simply as refugees. If asylum is denied, they will be deported. But for now they have each other, and they have hope.
+                    On Sight is a VR documentary that follows the progress of three Afghan brothers seeking asylum in Greece. 
+                </div>
+                <div class="project-text">
+                    They want to be seen as talented humans but from the moment their boat was sighted off the coast of Lesbos they have been known simply as refugees. If asylum is denied, they will be deported. But for now they have each other, and they have hope.
                 </div>
                 <div class="project-credits">
                     <div class="credit-line">Associate Producer: <span class="credit-name">Pablo Mahave</span></div>
@@ -1651,7 +1770,7 @@
 </div>
 
 <!-- UPDATED: Third Project Detail Section with Thumbnail Only -->
-<div class="project-detail-section">
+<div class="project-detail-section aljazeera-project">
     <!-- Project Content Container with horizontal layout for 1280px+ -->
     <div class="project-content">
         <!-- Left side: Project info container -->
@@ -1659,8 +1778,9 @@
             <div class="project-description">
                 <h2 class="project-title">AlJazeera Contrast</h2>
                 <div class="project-text">
-                    <span class="tech-badge">360° Live Action</span>
-                    <span class="tech-badge">Graphics</span>
+                    <span class="tech-badge">360° Video</span>
+                    <span class="tech-badge">Live Action</span>
+                    <span class="tech-badge">Immersive</span>
                 </div>
                 <div class="project-text">
                     Born of a theoretical utopia and dubbed a new French "City in Space", the Espaces Abraxas in Noisy-le-Grand were designed by Spanish architect Ricardo Bofill in the late 70s and early 80s. The aim was to mix social classes and build a theatrical landmark. These 19-story buildings consist of 610 apartments in what looks like a surreal ocean of concrete. 
@@ -1713,8 +1833,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const globalScaleFactor = 1.5;
     
     // UPDATED: Animation timing constants (increased speed by factor of 1.5)
-    const TEXT_CHANGE_INTERVAL = 2000; // Reduced from 3000ms to 2000ms
-    const TRANSITION_DURATION = 533; // Reduced from 800ms to 533ms
+    const TEXT_CHANGE_INTERVAL = 1333; // 1.5x speed of 2000ms
+    const TRANSITION_DURATION = 355; // 1.5x faster than 533ms
     
     // Function to set container dimensions based on image aspect ratio
     function setContainerDimensions() {
@@ -1914,15 +2034,16 @@ document.addEventListener('DOMContentLoaded', function() {
         updateScrollAnimation(window.scrollY);
     });
     
+    // Ensure visibility only happens during animation
+    heroContainer.style.visibility = 'hidden';
     // Animation sequence
     setTimeout(() => {
-        // Animate media items in from outside
         heroContainer.classList.add('animated');
-        
+        heroContainer.style.visibility = 'visible';
+        heroContainer.style.opacity = '1';
         // After media items are in place, add focus/blur effect
         setTimeout(() => {
             heroContainer.classList.add('focused');
-            
             // Set up click interaction to toggle focus
             heroContainer.addEventListener('click', toggleFocus);
         }, 2500);
@@ -1933,63 +2054,54 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Improved scroll animation
-    // Define animation parameters
-    const scrollDistance = window.innerHeight; // Full viewport height for the animation
-    const secondScrollDistance = window.innerHeight * 2; // Second full viewport height for the second animation
-    const thirdScrollDistance = window.innerHeight * 3; // Third full viewport height for the third animation
+    const scrollDistance = window.innerHeight;
+    const secondScrollDistance = window.innerHeight * 2;
+    const thirdScrollDistance = window.innerHeight * 3;
     let lastScrollY = 0;
     let ticking = false;
-    
-    // Function to update animations based on scroll position
+
     function updateScrollAnimation(scrollY) {
-        // Calculate progress for first animation (0 to 1)
         const progress1 = Math.min(1, Math.max(0, scrollY / scrollDistance));
-        
-        // Calculate progress for second animation (0 to 1)
-        // This starts after the first animation completes
         const progress2 = Math.min(1, Math.max(0, (scrollY - scrollDistance) / scrollDistance));
-        
-        // Calculate progress for third animation (0 to 1)
-        // This starts after the second animation completes
         const progress3 = Math.min(1, Math.max(0, (scrollY - secondScrollDistance) / scrollDistance));
-        
-        // 1. Animate Pablo Mahave text up and out
-        // Start at center (50% - 0%), move up to -100% (completely out of view)
-        const nameY = -100 * progress1; // percentage of viewport height
+
+        // Animate name container
+        const nameY = -100 * progress1;
         nameContainer.style.transform = `translate(-50%, calc(-50% + ${nameY}vh))`;
-        nameContainer.style.opacity = 1 - progress1; // Fade out as it moves up
-        
-        // 2. Animate subtitle container from below into center
-        // Start at 150% (below viewport), move up to 50% (center)
-        const subtitleY = 150 - (progress1 * 100); // from 150% to 50%
+        nameContainer.style.opacity = 1 - progress1;
+
+        // Animate subtitle container up
+        const subtitleY = 150 - (progress1 * 100);
         subtitleContainer.style.top = `${subtitleY}%`;
-        
-        // 3. Handle the transition to the third section
+
+        // ----- NEW: Hide subtitle when work statement starts -----
         if (progress2 > 0) {
-            // Make the work statement section visible
+            subtitleContainer.classList.add('hidden'); // Add class to fully hide
+        } else {
+            subtitleContainer.classList.remove('hidden'); // Restore when scrolling back up
+        }
+
+        // Animate work-statement section
+        if (progress2 > 0) {
             workStatementSection.classList.add('visible');
-            
-            // Calculate a separate progress for the transition effect
-            // We want this transition to happen in the first 40% of the second scroll
+            if (!animationStarted) {
+                startDynamicTextAnimation();
+            }
+
             const transitionProgress = Math.min(1, progress2 / 0.4);
-            
-            // Fade out subtitle as work statement fades in
-            subtitleContainer.style.opacity = 1 - transitionProgress;
-            
+
             // Fade out media items
             if (transitionProgress > 0.1) {
                 heroContainer.classList.add('fade-out');
             } else {
                 heroContainer.classList.remove('fade-out');
             }
-            
-            // Add solid background to work statement when transition is complete
+
+            // Add solid background and trigger dynamic text
             if (transitionProgress >= 0.9) {
                 workStatementSection.classList.add('solid-bg');
-                
-                // Start the dynamic text animation when the section is fully visible
+
                 if (transitionProgress >= 1 && !animationStarted) {
-                    // Add a small delay to ensure the section is fully visible
                     setTimeout(() => {
                         startDynamicTextAnimation();
                     }, 300);
@@ -2003,15 +2115,15 @@ document.addEventListener('DOMContentLoaded', function() {
             heroContainer.classList.remove('fade-out');
             stopDynamicTextAnimation();
         }
-        
-        // 4. Hide scroll indicator after scrolling starts
+
+        // Hide scroll indicator
         if (progress1 > 0.1) {
             scrollIndicator.classList.add('hidden');
         } else {
             scrollIndicator.classList.remove('hidden');
         }
-        
-        // 5. Handle the visibility of the work statement section when scrolling past it
+
+        // Hide work-statement section after third scroll
         if (progress3 > 0.1) {
             workStatementSection.style.opacity = 0;
             workStatementSection.style.visibility = 'hidden';
@@ -2020,17 +2132,15 @@ document.addEventListener('DOMContentLoaded', function() {
             workStatementSection.style.visibility = 'visible';
         }
     }
-    
-    // Listen for scroll events
+
+    // Scroll listener
     window.addEventListener('scroll', function(e) {
         lastScrollY = window.scrollY;
-        
         if (!ticking) {
             window.requestAnimationFrame(function() {
                 updateScrollAnimation(lastScrollY);
                 ticking = false;
             });
-            
             ticking = true;
         }
     });
@@ -2061,140 +2171,6 @@ document.addEventListener('DOMContentLoaded', function() {
             showSlide(currentSlide); // Show initial slide
         }
     });
-    
-    // 360 Video Player functionality
-    function setup360VideoPlayer() {
-        // Check for 360 videos
-        const videos360 = document.querySelectorAll('.video-360');
-        
-        if (videos360.length > 0) {
-            // Load Three.js dynamically
-            const threeScript = document.createElement('script');
-            threeScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
-            threeScript.onload = function() {
-                // Load OrbitControls after Three.js is loaded
-                const orbitScript = document.createElement('script');
-                orbitScript.src = 'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js';
-                orbitScript.onload = initializeVideos;
-                document.head.appendChild(orbitScript);
-            };
-            document.head.appendChild(threeScript);
-        }
-    }
-    
-    function initializeVideos() {
-        const videos360 = document.querySelectorAll('.video-360');
-        
-        videos360.forEach(video => {
-            // Create a container for the 360 player
-            const container = video.parentElement;
-            const videoId = video.id;
-            
-            // Create a canvas for Three.js
-            const canvas = document.createElement('canvas');
-            canvas.id = `canvas-${videoId}`;
-            canvas.className = 'video-360-canvas';
-            canvas.style.position = 'absolute';
-            canvas.style.top = '0';
-            canvas.style.left = '0';
-            canvas.style.width = '100%';
-            canvas.style.height = '100%';
-            canvas.style.display = 'none'; // Hide initially
-            container.appendChild(canvas);
-            
-            // Create a button to toggle 360 mode
-            const toggleButton = document.createElement('button');
-            toggleButton.className = 'toggle-360-btn';
-            toggleButton.textContent = 'Toggle 360° View';
-            toggleButton.style.position = 'absolute';
-            toggleButton.style.bottom = '10px';
-            toggleButton.style.right = '10px';
-            toggleButton.style.zIndex = '10';
-            toggleButton.style.background = 'rgba(0,0,0,0.7)';
-            toggleButton.style.color = 'white';
-            toggleButton.style.border = 'none';
-            toggleButton.style.padding = '8px 12px';
-            toggleButton.style.borderRadius = '4px';
-            toggleButton.style.cursor = 'pointer';
-            toggleButton.style.fontSize = '12px';
-            container.appendChild(toggleButton);
-            
-            // Set up Three.js scene
-            let scene, camera, renderer, controls;
-            let is360Mode = false;
-            
-            function init360() {
-                // Create scene
-                scene = new THREE.Scene();
-                
-                // Create camera
-                camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
-                camera.position.set(0, 0, 0.01); // Slightly offset to avoid issues
-                
-                // Create renderer
-                renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
-                renderer.setSize(container.clientWidth, container.clientHeight);
-                
-                // Create sphere
-                const geometry = new THREE.SphereGeometry(500, 60, 40);
-                geometry.scale(-1, 1, 1); // Invert the sphere
-                
-                // Create video texture
-                const texture = new THREE.VideoTexture(video);
-                texture.minFilter = THREE.LinearFilter;
-                texture.format = THREE.RGBFormat;
-                
-                const material = new THREE.MeshBasicMaterial({ map: texture });
-                const sphere = new THREE.Mesh(geometry, material);
-                scene.add(sphere);
-                
-                // Add controls
-                controls = new THREE.OrbitControls(camera, renderer.domElement);
-                controls.enableZoom = false;
-                controls.enablePan = false;
-                controls.rotateSpeed = 0.5;
-                
-                // Handle resize
-                window.addEventListener('resize', onWindowResize, false);
-                
-                // Start animation
-                animate();
-            }
-            
-            function onWindowResize() {
-                camera.aspect = container.clientWidth / container.clientHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(container.clientWidth, container.clientHeight);
-            }
-            
-            function animate() {
-                requestAnimationFrame(animate);
-                controls.update();
-                renderer.render(scene, camera);
-            }
-            
-            // Toggle between normal and 360 mode
-            toggleButton.addEventListener('click', function() {
-                if (!is360Mode) {
-                    // Switch to 360 mode
-                    if (!scene) init360(); // Initialize if first time
-                    video.style.display = 'none';
-                    canvas.style.display = 'block';
-                    is360Mode = true;
-                    toggleButton.textContent = 'Exit 360° View';
-                } else {
-                    // Switch back to normal mode
-                    video.style.display = 'block';
-                    canvas.style.display = 'none';
-                    is360Mode = false;
-                    toggleButton.textContent = 'Toggle 360° View';
-                }
-            });
-        });
-    }
-    
-    // Initialize 360 video players
-    setup360VideoPlayer();
 });
 </script>
 </body>
