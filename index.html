@@ -29,6 +29,57 @@
     gtag('config', 'G-FYK8883900');
     </script>
     <style>
+  #black-loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000000;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+  }
+
+  #black-loading-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+  }
+
+  .loading-dots {
+      display: flex;
+      gap: 15px;
+      font-size: 60px;
+      color: white;
+      font-weight: bold;
+      animation: fadeIn 1s ease-in-out;
+  }
+
+  .loading-dots span {
+      animation: bounce 1.5s infinite;
+  }
+
+  .loading-dots span:nth-child(2) {
+      animation-delay: 0.2s;
+  }
+
+  .loading-dots span:nth-child(3) {
+      animation-delay: 0.4s;
+  }
+
+  @keyframes bounce {
+      0%, 80%, 100% {
+          transform: translateY(0);
+      }
+      40% {
+          transform: translateY(-15px);
+      }
+  }
         .project-detail-section,
         .contact-section {
             border: none;
@@ -1218,6 +1269,11 @@
 </style>
 </head>
 <body>
+<div id="black-loading-screen">
+  <div class="loading-dots">
+    <span>.</span><span>.</span><span>.</span>
+  </div>
+</div>
 <div id="page-background"></div>
 <!-- WORK IN PROGRESS MESSAGE -->
 <!-- <div style="
@@ -1871,7 +1927,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const scrollIndicator = document.querySelector('.scroll-indicator');
     const mediaItems = document.querySelectorAll('.media-item');
     const dynamicTexts = document.querySelectorAll('.dynamic-text');
-    
+
+    // Fade out the black loading screen after 2 seconds
+    setTimeout(() => {
+        const loadingScreen = document.getElementById('black-loading-screen');
+        if (loadingScreen) {
+            loadingScreen.classList.add('hidden');
+            loadingScreen.style.display = 'none'; // Force removal after transition
+        }
+
+        // Optionally trigger the hero animation here if needed
+        if (heroContainer) {
+            heroContainer.classList.add('animated');
+        }
+    }, 2000);
+
     // Dynamic text animation variables
     let currentTextIndex = 0;
     let textAnimationInterval = null;
@@ -2227,3 +2297,11 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+window.addEventListener('load', function () {
+    setTimeout(() => {
+        const loadingScreen = document.getElementById('black-loading-screen');
+        if (loadingScreen) {
+            loadingScreen.classList.add('hidden');
+        }
+    }, 5000); // 5 seconds
+});
